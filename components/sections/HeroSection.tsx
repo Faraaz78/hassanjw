@@ -367,38 +367,72 @@ export const HeroSection = () => {
             >
               {/* 3D Jewelry Elements */}
               <div className="absolute inset-0">
+                {/* Enhanced Jewelry Elements */}
                 {/* Golden Necklace - Top Left */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
-                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                  transition={{ duration: 1, delay: 1.0 }}
+                  animate={{
+                    opacity: 1,
+                    scale: 1,
+                    rotate: [0, 5, -5, 0],
+                    y: [0, -5, 0]
+                  }}
+                  transition={{
+                    duration: 1,
+                    delay: 1.0,
+                    rotate: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+                    y: { duration: 3, repeat: Infinity, ease: "easeInOut" }
+                  }}
                   className="absolute top-8 left-8 w-24 h-24 z-10"
                 >
-                  <div className="w-full h-full bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full shadow-lg border-4 border-yellow-300 flex items-center justify-center">
-                    <div className="w-3 h-3 bg-white rounded-full shadow-md"></div>
+                  <div className="w-full h-full bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full shadow-xl border-4 border-yellow-300 flex items-center justify-center">
+                    <div className="w-3 h-3 bg-white rounded-full shadow-md animate-pulse"></div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent rounded-full"></div>
                   </div>
                 </motion.div>
 
                 {/* Diamond Ring - Top Right */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8, rotate: 10 }}
-                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                  transition={{ duration: 1, delay: 1.2 }}
+                  animate={{
+                    opacity: 1,
+                    scale: [1, 1.1, 1],
+                    rotate: [0, -5, 5, 0]
+                  }}
+                  transition={{
+                    duration: 1,
+                    delay: 1.2,
+                    scale: { duration: 2, repeat: Infinity, ease: "easeInOut" },
+                    rotate: { duration: 5, repeat: Infinity, ease: "easeInOut" }
+                  }}
                   className="absolute top-16 right-12 w-20 h-20 z-10"
                 >
                   <div className="w-full h-full bg-gradient-to-br from-yellow-500 to-yellow-700 rounded-full shadow-xl flex items-center justify-center">
                     <div className="w-4 h-4 bg-gradient-to-br from-blue-200 to-blue-400 rounded-full shadow-lg animate-pulse"></div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-full"></div>
                   </div>
                 </motion.div>
 
                 {/* Golden Bracelet - Bottom Left */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8, rotate: -15 }}
-                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                  transition={{ duration: 1, delay: 1.4 }}
+                  animate={{
+                    opacity: 1,
+                    scale: 1,
+                    rotate: [0, 3, -3, 0],
+                    x: [0, 3, -3, 0]
+                  }}
+                  transition={{
+                    duration: 1,
+                    delay: 1.4,
+                    rotate: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+                    x: { duration: 4, repeat: Infinity, ease: "easeInOut" }
+                  }}
                   className="absolute bottom-20 left-4 w-28 h-16 z-10"
                 >
-                  <div className="w-full h-full bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 rounded-full shadow-lg border-2 border-yellow-300"></div>
+                  <div className="w-full h-full bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 rounded-full shadow-xl border-2 border-yellow-300">
+                    <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent rounded-full"></div>
+                  </div>
                 </motion.div>
 
                 {/* Emerald Earring - Bottom Right */}
