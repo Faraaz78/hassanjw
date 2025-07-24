@@ -124,7 +124,7 @@ const IndiaDeliveryGlobe = () => {
       const position = latLngToVector3(location.lat, location.lng);
 
       // Create marker pin (elongated sphere)
-      const markerGeometry = new THREE.SphereGeometry(0.025, 8, 8);
+      const markerGeometry = new THREE.SphereGeometry(0.04, 8, 8);
       const markerMaterial = new THREE.MeshBasicMaterial({
         color: 0xff3333,
         transparent: true,
