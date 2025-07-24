@@ -518,7 +518,7 @@ export const HeroSection = () => {
                   {/* Phone Frame */}
                   <div className="relative w-64 h-[500px] bg-gray-900 dark:bg-black rounded-[3rem] p-2 shadow-2xl border-4 border-gray-800 dark:border-gold-900/50">
                     {/* Screen */}
-                    <div className="w-full h-full bg-black rounded-[2.5rem] overflow-hidden relative">
+                    <div className="w-full h-full bg-black dark:bg-luxury-black rounded-[2.5rem] overflow-hidden relative">
                       {/* Status Bar */}
                       <div className="absolute top-0 left-0 right-0 h-8 bg-black z-20 flex items-center justify-between px-6">
                         <div className="flex space-x-1">
