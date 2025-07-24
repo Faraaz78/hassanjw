@@ -18,7 +18,7 @@ const contactInfo = [
   {
     icon: <FaMapMarkerAlt className="text-gold-500 text-xl mt-1" />,
     title: "Address",
-    content: "123 Jewelry Street, Diamond District\nMumbai, Maharashtra 400001"
+    content: "7/843 Madurai Ismail Saheb Street\nVaniyambadi 635751"
   },
   {
     icon: <FaPhone className="text-gold-500 text-xl mt-1" />,
