@@ -98,8 +98,8 @@ export const FloatingNav = ({
           className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black border-gold-400 px-3 sm:px-4 py-2 rounded-full relative overflow-hidden text-xs sm:text-sm"
           asChild
         >
-          <a href="#contact">
-            <span>Contact</span>
+          <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer">
+            <span>Shop Now</span>
             <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-gold-500 to-transparent h-px" />
           </a>
         </Button>
