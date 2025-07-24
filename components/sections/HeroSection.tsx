@@ -703,7 +703,7 @@ export const HeroSection = () => {
         </div>
       </div>
 
-      {/* Stats Cards - Bottom Left */}
+      
       
 
       {/* Achievement Badge - Top Right */}
