@@ -78,24 +78,38 @@ export const ThemeToggle = () => {
       <motion.div
         initial={false}
         animate={{
-          rotate: isDark ? 360 : 0,
-          scale: isDark ? 1.1 : 1
+          rotate: isDark ? 720 : 0,
+          scale: isDark ? 1.2 : 1
         }}
-        transition={{ duration: 0.5, ease: "easeInOut" }}
+        transition={{
+          duration: 0.8,
+          ease: "easeInOut",
+          type: "spring",
+          stiffness: 200,
+          damping: 20
+        }}
       >
         <motion.div
-          animate={{ opacity: isDark ? 0 : 1 }}
-          transition={{ duration: 0.3 }}
+          animate={{
+            opacity: isDark ? 0 : 1,
+            scale: isDark ? 0.5 : 1,
+            rotate: isDark ? -180 : 0
+          }}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
           style={{ position: isDark ? "absolute" : "static" }}
         >
-          <MdDarkMode className="w-5 h-5 text-black" />
+          <MdDarkMode className="w-5 h-5 text-gray-800 dark:text-gray-700" />
         </motion.div>
         <motion.div
-          animate={{ opacity: isDark ? 1 : 0 }}
-          transition={{ duration: 0.3 }}
+          animate={{
+            opacity: isDark ? 1 : 0,
+            scale: isDark ? 1 : 0.5,
+            rotate: isDark ? 0 : 180
+          }}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
           style={{ position: isDark ? "static" : "absolute" }}
         >
-          <MdLightMode className="w-5 h-5 text-gold-400" />
+          <MdLightMode className="w-5 h-5 text-gold-500 drop-shadow-sm" />
         </motion.div>
       </motion.div>
     </motion.button>
