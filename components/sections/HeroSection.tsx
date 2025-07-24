@@ -723,10 +723,7 @@ export const HeroSection = () => {
         transition={{ duration: 0.8, delay: 2.0 }}
         className="absolute top-32 right-8 z-30 hidden lg:block"
       >
-        <div className="bg-gradient-to-br from-gold-400 to-gold-600 text-black rounded-full p-3 shadow-xl">
-          <div className="text-xs font-bold text-center">AWARD</div>
-          <div className="text-xs text-center">WINNING</div>
-        </div>
+       
       </motion.div>
     </section>
   );
