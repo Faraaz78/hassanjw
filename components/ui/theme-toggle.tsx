@@ -76,21 +76,29 @@ export const ThemeToggle = () => {
   return (
     <motion.button
       onClick={toggleTheme}
-      className="fixed top-4 sm:top-10 right-6 z-[5001] p-3 rounded-full bg-white/90 dark:bg-black/90 backdrop-blur-md shadow-lg border border-gold-200/80 dark:border-gold-600/80 hover:shadow-xl transition-all duration-500"
-      whileHover={{
+      disabled={isTransitioning}
+      className="fixed top-4 sm:top-10 right-6 z-[10000] p-3 rounded-full bg-white/90 dark:bg-black/90 backdrop-blur-md shadow-lg border border-gold-200/80 dark:border-gold-600/80 hover:shadow-xl transition-all duration-500 disabled:cursor-not-allowed"
+      whileHover={!isTransitioning ? {
         scale: 1.15,
         rotate: 10,
         boxShadow: "0 10px 30px rgba(212, 175, 55, 0.3)"
-      }}
-      whileTap={{ scale: 0.85 }}
+      } : {}}
+      whileTap={!isTransitioning ? { scale: 0.85 } : {}}
       animate={{
         backgroundColor: isDark ? "rgba(0, 0, 0, 0.95)" : "rgba(255, 255, 255, 0.95)",
         borderColor: isDark ? "rgba(184, 148, 31, 0.8)" : "rgba(255, 240, 179, 0.8)",
         boxShadow: isDark
           ? "0 8px 25px rgba(212, 175, 55, 0.2)"
-          : "0 8px 25px rgba(0, 0, 0, 0.1)"
+          : "0 8px 25px rgba(0, 0, 0, 0.1)",
+        scale: isTransitioning ? 1.2 : 1,
+        rotate: isTransitioning ? 360 : 0
       }}
-      transition={{ duration: 0.6, ease: "easeInOut" }}
+      transition={{
+        duration: isTransitioning ? 0.8 : 0.6,
+        ease: "easeInOut",
+        type: isTransitioning ? "spring" : "tween",
+        stiffness: isTransitioning ? 150 : 200
+      }}
     >
       <motion.div
         initial={false}
