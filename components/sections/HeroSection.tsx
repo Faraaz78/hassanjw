@@ -277,12 +277,13 @@ export const HeroSection = () => {
                 className="text-lg md:text-xl text-gray-700 dark:text-gray-200 leading-relaxed max-w-lg"
               >
                 <TypewriterEffect
-                  words={[
-                    "Discover the finest collection of handcrafted jewelry.",
-                    "Where tradition meets luxury in every piece we create.",
-                    "Experience elegance redefined with Hassan Jewellers.",
-                    "Crafting dreams into timeless treasures."
-                  ]}
+                  words= [
+                "Finest Handcrafted Jewelry Collection",
+                "Tradition Meets Luxury Always",
+                "Elegance Redefined by Hassan",
+                "Crafting Timeless Dream Treasures"
+                ]
+
                   className="text-lg md:text-xl text-gray-700 dark:text-gray-200"
                   cursorClassName="text-gold-500"
                   typeSpeed={50}
