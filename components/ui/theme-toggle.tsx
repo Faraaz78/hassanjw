@@ -59,14 +59,21 @@ export const ThemeToggle = () => {
   return (
     <motion.button
       onClick={toggleTheme}
-      className="fixed top-20 right-6 z-50 p-3 rounded-full bg-white dark:bg-black shadow-lg border border-gold-200 dark:border-gold-700 hover:shadow-xl transition-all duration-300"
-      whileHover={{ scale: 1.1, rotate: 5 }}
-      whileTap={{ scale: 0.9 }}
-      animate={{
-        backgroundColor: isDark ? "#000000" : "#ffffff",
-        borderColor: isDark ? "#B8941F" : "#FFF0B3",
+      className="fixed top-4 sm:top-10 right-6 z-[5001] p-3 rounded-full bg-white/90 dark:bg-black/90 backdrop-blur-md shadow-lg border border-gold-200/80 dark:border-gold-600/80 hover:shadow-xl transition-all duration-500"
+      whileHover={{
+        scale: 1.15,
+        rotate: 10,
+        boxShadow: "0 10px 30px rgba(212, 175, 55, 0.3)"
       }}
-      transition={{ duration: 0.5, ease: "easeInOut" }}
+      whileTap={{ scale: 0.85 }}
+      animate={{
+        backgroundColor: isDark ? "rgba(0, 0, 0, 0.95)" : "rgba(255, 255, 255, 0.95)",
+        borderColor: isDark ? "rgba(184, 148, 31, 0.8)" : "rgba(255, 240, 179, 0.8)",
+        boxShadow: isDark
+          ? "0 8px 25px rgba(212, 175, 55, 0.2)"
+          : "0 8px 25px rgba(0, 0, 0, 0.1)"
+      }}
+      transition={{ duration: 0.6, ease: "easeInOut" }}
     >
       <motion.div
         initial={false}
