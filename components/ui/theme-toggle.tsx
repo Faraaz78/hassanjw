@@ -31,91 +31,54 @@ export const ThemeToggle = () => {
     const newTheme = !isDark;
     setIsTransitioning(true);
 
-    // Disable body transitions during our custom animation
-    document.body.style.transition = 'none';
-    document.documentElement.style.transition = 'none';
+    // Temporarily change theme for the overlay
+    const tempTheme = newTheme;
 
-    // Create a duplicate of the current page with the new theme
-    const currentContent = document.documentElement.cloneNode(true) as HTMLElement;
+    // Create the mask overlay that will reveal the new theme
+    const overlay = document.createElement('div');
 
-    // Apply new theme to the clone
-    if (newTheme) {
-      currentContent.classList.add("dark");
+    // Set up the initial state - make the entire page appear with new theme
+    if (tempTheme) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
     } else {
-      currentContent.classList.remove("dark");
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
     }
 
-    // Create overlay with the new themed content
-    const overlay = document.createElement('div');
+    // Create a mask that hides the new theme initially
     overlay.style.cssText = `
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
+      background: ${!newTheme ? '#000000' : '#ffffff'};
       z-index: 9999;
       pointer-events: none;
-      overflow: hidden;
-      clip-path: circle(0% at 85% 15%);
-      transition: clip-path 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      clip-path: circle(150% at 85% 15%);
+      transition: clip-path 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     `;
 
-    // Create iframe-like content container
-    const contentContainer = document.createElement('div');
-    contentContainer.style.cssText = `
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
-      position: relative;
-    `;
-
-    // Copy styles and content
-    const newBody = currentContent.querySelector('body');
-    if (newBody) {
-      contentContainer.innerHTML = newBody.innerHTML;
-
-      // Copy all stylesheets
-      const originalStyles = document.querySelectorAll('style, link[rel="stylesheet"]');
-      originalStyles.forEach(style => {
-        if (style.tagName === 'STYLE') {
-          const newStyle = document.createElement('style');
-          newStyle.textContent = (style as HTMLStyleElement).textContent;
-          contentContainer.appendChild(newStyle);
-        }
-      });
-
-      // Apply theme class to container
-      contentContainer.className = newTheme ? 'dark' : '';
-    }
-
-    overlay.appendChild(contentContainer);
     document.body.appendChild(overlay);
 
-    // Start the radial animation
+    // Start the animation by shrinking the mask (revealing new theme)
     requestAnimationFrame(() => {
-      overlay.style.clipPath = 'circle(150% at 85% 15%)';
+      requestAnimationFrame(() => {
+        overlay.style.clipPath = 'circle(0% at 85% 15%)';
+      });
     });
 
-    // Change actual theme halfway through animation
+    // Update state
     setTimeout(() => {
       setIsDark(newTheme);
+    }, 100);
 
-      if (newTheme) {
-        document.documentElement.classList.add("dark");
-        localStorage.setItem("theme", "dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-        localStorage.setItem("theme", "light");
-      }
-    }, 400);
-
-    // Clean up overlay and restore transitions
+    // Clean up overlay
     setTimeout(() => {
       document.body.removeChild(overlay);
-      document.body.style.transition = '';
-      document.documentElement.style.transition = '';
       setIsTransitioning(false);
-    }, 800);
+    }, 900);
   };
 
   return (
