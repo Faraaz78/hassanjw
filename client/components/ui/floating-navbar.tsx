@@ -84,7 +84,7 @@ export const FloatingNav = ({
           );
         })}
         <button className="border text-sm font-medium relative border-gold-300 dark:border-gold-700 text-luxury-rich-black dark:text-luxury-pearl px-4 py-2 rounded-full bg-gradient-to-r from-gold-100 to-gold-200 dark:from-gold-900 dark:to-gold-800 hover:from-gold-200 hover:to-gold-300 dark:hover:from-gold-800 dark:hover:to-gold-700 transition-all duration-300">
-          <span>Contact</span>
+          <span>Shop Now</span>
           <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-gold-500 to-transparent h-px" />
         </button>
       </motion.div>
