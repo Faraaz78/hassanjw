@@ -26,23 +26,34 @@ export const ThemeToggle = () => {
 
   const toggleTheme = () => {
     const newTheme = !isDark;
-    setIsDark(newTheme);
 
-    // Add smooth transition class before changing theme
-    document.documentElement.style.transition = 'background-color 0.5s ease, color 0.5s ease';
+    // Enhanced smooth transition for the entire page
+    document.documentElement.style.transition = 'background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1), color 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+    document.body.style.transition = 'background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1), color 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
 
-    if (newTheme) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
+    // Add a smooth fade effect
+    document.documentElement.style.opacity = '0.95';
+
+    setTimeout(() => {
+      setIsDark(newTheme);
+
+      if (newTheme) {
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("theme", "dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("theme", "light");
+      }
+
+      // Restore opacity
+      document.documentElement.style.opacity = '1';
+    }, 150);
 
     // Remove transition after theme change is complete
     setTimeout(() => {
       document.documentElement.style.transition = '';
-    }, 500);
+      document.body.style.transition = '';
+    }, 800);
   };
 
   return (
