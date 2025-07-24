@@ -698,13 +698,7 @@ export const HeroSection = () => {
         </div>
       </div>
 
-      {/* Stats Cards - Bottom Left */}
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 1.8 }}
-        className="absolute bottom-8 left-8 z-30 hidden lg:block"
-      >
+     
         
       </motion.div>
 
