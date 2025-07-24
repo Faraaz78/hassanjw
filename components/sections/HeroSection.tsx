@@ -258,10 +258,13 @@ export const HeroSection = () => {
       </div>
 
       {/* Background gradients */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white via-gray-50 to-yellow-50/30 dark:from-black dark:via-gray-900 dark:to-yellow-900/10" />
+      <div className="absolute inset-0 bg-gradient-to-br from-white via-gray-50 to-yellow-50/30 dark:from-black dark:via-luxury-black dark:to-gold-900/20" />
 
       {/* Additional gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gold-50/10 to-transparent dark:from-transparent dark:via-gold-900/5 dark:to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gold-50/10 to-transparent dark:from-black/50 dark:via-gold-900/20 dark:to-black/50" />
+
+      {/* Dark mode gold accent overlay */}
+      <div className="absolute inset-0 hidden dark:block bg-gradient-to-tr from-gold-900/10 via-transparent to-gold-800/5" />
 
       <div className="relative z-20 min-h-screen flex items-center">
         <div className="max-w-7xl mx-auto px-4 py-20">
