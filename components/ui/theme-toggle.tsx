@@ -103,15 +103,15 @@ export const ThemeToggle = () => {
       <motion.div
         initial={false}
         animate={{
-          rotate: isDark ? 720 : 0,
-          scale: isDark ? 1.2 : 1
+          rotate: isTransitioning ? 1080 : (isDark ? 720 : 0),
+          scale: isTransitioning ? 1.5 : (isDark ? 1.2 : 1)
         }}
         transition={{
-          duration: 0.8,
+          duration: isTransitioning ? 0.8 : 0.8,
           ease: "easeInOut",
           type: "spring",
-          stiffness: 200,
-          damping: 20
+          stiffness: isTransitioning ? 100 : 200,
+          damping: isTransitioning ? 15 : 20
         }}
       >
         <motion.div
