@@ -26,15 +26,34 @@ export const ThemeToggle = () => {
   }
 
   const toggleTheme = () => {
+    if (isTransitioning) return;
+
     const newTheme = !isDark;
+    setIsTransitioning(true);
 
-    // Enhanced smooth transition for the entire page
-    document.documentElement.style.transition = 'background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1), color 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-    document.body.style.transition = 'background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1), color 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+    // Create radial transition overlay
+    const overlay = document.createElement('div');
+    overlay.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 9999;
+      pointer-events: none;
+      background: ${newTheme ? '#000000' : '#ffffff'};
+      clip-path: circle(0% at 85% 15%);
+      transition: clip-path 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    `;
 
-    // Add a smooth fade effect
-    document.documentElement.style.opacity = '0.95';
+    document.body.appendChild(overlay);
 
+    // Start the radial animation
+    requestAnimationFrame(() => {
+      overlay.style.clipPath = 'circle(150% at 85% 15%)';
+    });
+
+    // Change theme halfway through animation
     setTimeout(() => {
       setIsDark(newTheme);
 
@@ -45,15 +64,12 @@ export const ThemeToggle = () => {
         document.documentElement.classList.remove("dark");
         localStorage.setItem("theme", "light");
       }
+    }, 400);
 
-      // Restore opacity
-      document.documentElement.style.opacity = '1';
-    }, 150);
-
-    // Remove transition after theme change is complete
+    // Clean up overlay
     setTimeout(() => {
-      document.documentElement.style.transition = '';
-      document.body.style.transition = '';
+      document.body.removeChild(overlay);
+      setIsTransitioning(false);
     }, 800);
   };
 
