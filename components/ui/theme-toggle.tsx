@@ -7,6 +7,7 @@ import { MdLightMode, MdDarkMode } from "react-icons/md";
 export const ThemeToggle = () => {
   const [isDark, setIsDark] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
     setMounted(true);
