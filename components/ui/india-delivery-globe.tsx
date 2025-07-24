@@ -89,7 +89,7 @@ const IndiaDeliveryGlobe = () => {
     const starsCount = 5000;
     const positions = new Float32Array(starsCount * 3);
 
-    for (let i = 0; i < starsCount * 3; i++) {
+    for (let i = 0; i < starsCount * 6; i++) {
       positions[i] = (Math.random() - 0.5) * 1000;
     }
 
