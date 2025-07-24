@@ -259,10 +259,8 @@ export const HeroSection = () => {
                   <div className="hidden dark:block">
                     <img
                       src="https://cdn.builder.io/api/v1/image/assets%2F1d129d8828c04421a1872f3de005dbe7%2F9d2ebe9e76a54d609fdf92b5dd22fe88?format=webp&width=800"
-
-                      
                       alt="Hassan Jewellers Logo Dark"
-                      className="w-full h-auto object-contain"
+                      className="w-full h-auto object-contain drop-shadow-lg"
                     />
                   </div>
                 </motion.div>
