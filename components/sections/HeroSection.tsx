@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { TypewriterEffect } from "@/components/ui/typewriter-effect";
 
 // Mock components - replace with your actual imports
 const MagicButton = ({ variant, size, className, children, ...props }: any) => (
@@ -237,70 +238,63 @@ export const HeroSection = () => {
               transition={{ duration: 0.8 }}
               className="space-y-8"
             >
-              {/* Main Heading - Hassan Jewellers */}
+              {/* Hassan Logo Image */}
               <div className="space-y-4">
-                <motion.h1
+                <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
-                  className="text-6xl md:text-7xl lg:text-8xl font-bold leading-tight"
+                  className="relative w-full max-w-md mx-auto lg:mx-0"
                 >
-                  <span className="block bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 bg-clip-text text-transparent">
-                    Hassan
-                  </span>
-                  <span className="block bg-gradient-to-r from-yellow-500 via-yellow-600 to-yellow-700 bg-clip-text text-transparent">
-                    Jewellers
-                  </span>
-                </motion.h1>
+                  {/* Light Mode Hassan Logo */}
+                  <div className="dark:hidden">
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets%2F1d129d8828c04421a1872f3de005dbe7%2Ff34ae1c7c8274b99bf5a4c9e8400e085?format=webp&width=800"
+                      alt="Hassan Jewellers Logo Light"
+                      className="w-full h-auto object-contain"
+                    />
+                  </div>
+
+                  {/* Dark Mode Hassan Logo */}
+                  <div className="hidden dark:block">
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets%2F1d129d8828c04421a1872f3de005dbe7%2F9d2ebe9e76a54d609fdf92b5dd22fe88?format=webp&width=800"
+                      alt="Hassan Jewellers Logo Dark"
+                      className="w-full h-auto object-contain"
+                    />
+                  </div>
+                </motion.div>
               </div>
 
-              {/* Description */}
-              <motion.p
+              {/* Typewriter Description */}
+              <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
                 className="text-lg md:text-xl text-gray-700 dark:text-gray-200 leading-relaxed max-w-lg"
               >
-                Discover the finest collection of handcrafted jewelry. Where
-                tradition meets luxury in every piece we create.
-              </motion.p>
-
-              {/* Search Bar */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-                className="flex w-full max-w-md"
-              >
-                <div className="relative flex w-full">
-                  <input
-                    type="text"
-                    placeholder="Search for jewelry..."
-                    className="w-full px-6 py-4 text-gray-900 bg-white dark:bg-white border border-yellow-300/50 rounded-l-full focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent placeholder-gray-500"
-                  />
-                  <button className="px-6 py-4 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white rounded-r-full transition-all duration-300 flex items-center justify-center">
-                    <svg
-                      className="w-5 h-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                      />
-                    </svg>
-                  </button>
-                </div>
+                <TypewriterEffect
+                  words={[
+                    "Discover the finest collection of handcrafted jewelry.",
+                    "Where tradition meets luxury in every piece we create.",
+                    "Experience elegance redefined with Hassan Jewellers.",
+                    "Crafting dreams into timeless treasures."
+                  ]}
+                  className="text-lg md:text-xl text-gray-700 dark:text-gray-200"
+                  cursorClassName="text-gold-500"
+                  typeSpeed={50}
+                  deleteSpeed={30}
+                  delayBetweenWords={3000}
+                />
               </motion.div>
+
+
 
               {/* CTA Buttons */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.8 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
                 className="flex flex-col sm:flex-row gap-4"
               >
                 <MagicButton variant="primary" size="lg" className="px-8">
@@ -475,7 +469,7 @@ export const HeroSection = () => {
                     }}
                   >
                     <MacBook
-                      width="400px"
+                      width="500px"
                       screenContent={
                         <motion.div
                           initial={{ opacity: 0 }}
