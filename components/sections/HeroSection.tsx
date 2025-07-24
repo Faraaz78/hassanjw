@@ -345,13 +345,13 @@ export const HeroSection = () => {
                 transition={{ duration: 0.8, delay: 0.8 }}
                 className="flex flex-col sm:flex-row gap-4"
               >
-                <MagicButton variant="primary" size="lg" className="px-8">
+                <MagicButton variant="primary" size="lg" className="px-8 shadow-lg hover:shadow-xl">
                   Explore Collections
                 </MagicButton>
                 <MagicButton
                   variant="outline"
                   size="lg"
-                  className="px-8 border-yellow-400 text-yellow-600 dark:border-yellow-400 dark:text-yellow-400 hover:bg-yellow-400 hover:text-black"
+                  className="px-8 border-yellow-400 text-yellow-600 dark:border-yellow-400 dark:text-yellow-400 hover:bg-yellow-400 hover:text-black shadow-lg hover:shadow-xl"
                 >
                   Book Consultation
                 </MagicButton>
