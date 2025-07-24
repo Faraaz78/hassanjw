@@ -317,11 +317,32 @@ export const HeroSection = () => {
 
 
 
-              {/* CTA Buttons */}
+              {/* Trust Badges */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
+                className="flex flex-wrap gap-6 text-sm text-gray-600 dark:text-gray-300"
+              >
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                  <span>50+ Years Legacy</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-gold-500 rounded-full animate-pulse"></div>
+                  <span>Certified Authenticity</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                  <span>10,000+ Happy Customers</span>
+                </div>
+              </motion.div>
+
+              {/* CTA Buttons */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
                 className="flex flex-col sm:flex-row gap-4"
               >
                 <MagicButton variant="primary" size="lg" className="px-8">
