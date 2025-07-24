@@ -201,6 +201,7 @@ const MacBook: React.FC<MacBookProps> = ({
 
 export const HeroSection = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const [particles, setParticles] = useState<Array<{left: number, top: number}>>([]);
 
   useEffect(() => {
     const checkDevice = () => {
@@ -212,6 +213,13 @@ export const HeroSection = () => {
       const isSmallScreen = window.innerWidth < 768;
       setIsMobile(isMobileDevice || isSmallScreen);
     };
+
+    // Initialize particles positions on client side only
+    const particlePositions = Array.from({ length: 20 }, () => ({
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+    }));
+    setParticles(particlePositions);
 
     checkDevice();
     window.addEventListener("resize", checkDevice);
