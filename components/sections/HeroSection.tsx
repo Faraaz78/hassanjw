@@ -220,13 +220,40 @@ export const HeroSection = () => {
 
   return (
     <section className="min-h-screen w-full bg-white dark:bg-black relative overflow-hidden">
-      {/* Background Effects - Only for dark mode */}
+      {/* Background Effects */}
       <div className="dark:block hidden">
         <BackgroundBeams className="absolute inset-0 opacity-20" />
       </div>
 
+      {/* Floating Particles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(20)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-gold-400/20 rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -30, 0],
+              opacity: [0.2, 0.8, 0.2],
+              scale: [1, 1.5, 1],
+            }}
+            transition={{
+              duration: 3 + Math.random() * 2,
+              repeat: Infinity,
+              delay: Math.random() * 2,
+            }}
+          />
+        ))}
+      </div>
+
       {/* Background gradients */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white via-gray-50 to-yellow-50/30 dark:from-black dark:via-black dark:to-gray-900" />
+      <div className="absolute inset-0 bg-gradient-to-br from-white via-gray-50 to-yellow-50/30 dark:from-black dark:via-gray-900 dark:to-yellow-900/10" />
+
+      {/* Additional gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gold-50/10 to-transparent dark:from-transparent dark:via-gold-900/5 dark:to-transparent" />
 
       <div className="relative z-20 min-h-screen flex items-center">
         <div className="max-w-7xl mx-auto px-4 py-20">
