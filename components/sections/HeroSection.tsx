@@ -305,7 +305,7 @@ export const HeroSection = () => {
                     "Finest Handcrafted Jewelry Collection.",
                     "Tradition Meets Luxury Always.",
                     "Elegance Redefined by Hassan.",
-                    "Crafting Timeless Dream Treasures,"
+                    "Crafting Timeless Dream Treasures."
                   ]}
                   className="text-lg md:text-xl text-gray-700 dark:text-gray-200"
                   cursorClassName="text-gold-500"
