@@ -178,16 +178,23 @@ export const ReviewsSection = () => {
           className="space-y-8"
         >
           {/* First row - moving left */}
-          <ReviewsTicker 
-            reviews={testimonials.slice(0, 4)} 
-            direction="left" 
+          <ReviewsTicker
+            reviews={testimonials.slice(0, 7)}
+            direction="left"
             speed="slow"
           />
-          
+
           {/* Second row - moving right */}
-          <ReviewsTicker 
-            reviews={testimonials.slice(4, 8)} 
-            direction="right" 
+          <ReviewsTicker
+            reviews={testimonials.slice(7, 14)}
+            direction="right"
+            speed="slow"
+          />
+
+          {/* Third row - moving left */}
+          <ReviewsTicker
+            reviews={testimonials.slice(14, 20)}
+            direction="left"
             speed="slow"
           />
         </motion.div>
