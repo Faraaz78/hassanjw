@@ -31,54 +31,94 @@ export const ThemeToggle = () => {
     const newTheme = !isDark;
     setIsTransitioning(true);
 
-    // Temporarily change theme for the overlay
-    const tempTheme = newTheme;
-
-    // Create the mask overlay that will reveal the new theme
+    // Create overlay container that will show the new themed page
     const overlay = document.createElement('div');
-
-    // Set up the initial state - make the entire page appear with new theme
-    if (tempTheme) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
-
-    // Create a mask that hides the new theme initially
     overlay.style.cssText = `
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: ${!newTheme ? '#000000' : '#ffffff'};
       z-index: 9999;
       pointer-events: none;
-      clip-path: circle(150% at 85% 15%);
-      transition: clip-path 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      overflow: hidden;
+      clip-path: circle(0% at 85% 15%);
+      transition: clip-path 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     `;
 
+    // Clone the current page
+    const pageClone = document.documentElement.cloneNode(true) as HTMLElement;
+
+    // Apply new theme to the clone
+    if (newTheme) {
+      pageClone.classList.add("dark");
+    } else {
+      pageClone.classList.remove("dark");
+    }
+
+    // Create a container for the cloned content
+    const contentContainer = document.createElement('div');
+    contentContainer.style.cssText = `
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    `;
+
+    // Get the body content from clone and apply it
+    const clonedBody = pageClone.querySelector('body');
+    if (clonedBody) {
+      contentContainer.innerHTML = clonedBody.innerHTML;
+
+      // Apply the theme classes to the container
+      if (newTheme) {
+        contentContainer.classList.add('dark');
+      }
+
+      // Copy styles - create style element with current page styles
+      const existingStyles = Array.from(document.querySelectorAll('style, link[rel="stylesheet"]'));
+      existingStyles.forEach(styleEl => {
+        if (styleEl.tagName === 'STYLE') {
+          const newStyle = document.createElement('style');
+          newStyle.textContent = (styleEl as HTMLStyleElement).textContent;
+          contentContainer.appendChild(newStyle);
+        } else if (styleEl.tagName === 'LINK') {
+          const newLink = document.createElement('link');
+          newLink.rel = 'stylesheet';
+          newLink.href = (styleEl as HTMLLinkElement).href;
+          contentContainer.appendChild(newLink);
+        }
+      });
+    }
+
+    overlay.appendChild(contentContainer);
     document.body.appendChild(overlay);
 
-    // Start the animation by shrinking the mask (revealing new theme)
+    // Start the radial expansion animation
     requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        overlay.style.clipPath = 'circle(0% at 85% 15%)';
-      });
+      overlay.style.clipPath = 'circle(150% at 85% 15%)';
     });
 
-    // Update state
+    // Change the actual theme halfway through the animation
     setTimeout(() => {
       setIsDark(newTheme);
-    }, 100);
 
-    // Clean up overlay
+      if (newTheme) {
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("theme", "dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("theme", "light");
+      }
+    }, 400);
+
+    // Clean up
     setTimeout(() => {
       document.body.removeChild(overlay);
       setIsTransitioning(false);
-    }, 900);
+    }, 800);
   };
 
   return (
