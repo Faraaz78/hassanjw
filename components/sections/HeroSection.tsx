@@ -287,7 +287,7 @@ export const HeroSection = () => {
                   cursorClassName="text-gold-500"
                   typeSpeed={50}
                   deleteSpeed={30}
-                  delayBetweenWords={3000}
+                  delayBetweenWords={2000}
                 />
               </motion.div>
 
