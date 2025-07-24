@@ -31,7 +31,21 @@ export const ThemeToggle = () => {
     const newTheme = !isDark;
     setIsTransitioning(true);
 
-    // Create radial transition overlay
+    // Disable body transitions during our custom animation
+    document.body.style.transition = 'none';
+    document.documentElement.style.transition = 'none';
+
+    // Create a duplicate of the current page with the new theme
+    const currentContent = document.documentElement.cloneNode(true) as HTMLElement;
+
+    // Apply new theme to the clone
+    if (newTheme) {
+      currentContent.classList.add("dark");
+    } else {
+      currentContent.classList.remove("dark");
+    }
+
+    // Create overlay with the new themed content
     const overlay = document.createElement('div');
     overlay.style.cssText = `
       position: fixed;
@@ -41,11 +55,40 @@ export const ThemeToggle = () => {
       height: 100vh;
       z-index: 9999;
       pointer-events: none;
-      background: ${newTheme ? '#000000' : '#ffffff'};
+      overflow: hidden;
       clip-path: circle(0% at 85% 15%);
-      transition: clip-path 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: clip-path 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     `;
 
+    // Create iframe-like content container
+    const contentContainer = document.createElement('div');
+    contentContainer.style.cssText = `
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    `;
+
+    // Copy styles and content
+    const newBody = currentContent.querySelector('body');
+    if (newBody) {
+      contentContainer.innerHTML = newBody.innerHTML;
+
+      // Copy all stylesheets
+      const originalStyles = document.querySelectorAll('style, link[rel="stylesheet"]');
+      originalStyles.forEach(style => {
+        if (style.tagName === 'STYLE') {
+          const newStyle = document.createElement('style');
+          newStyle.textContent = (style as HTMLStyleElement).textContent;
+          contentContainer.appendChild(newStyle);
+        }
+      });
+
+      // Apply theme class to container
+      contentContainer.className = newTheme ? 'dark' : '';
+    }
+
+    overlay.appendChild(contentContainer);
     document.body.appendChild(overlay);
 
     // Start the radial animation
@@ -53,7 +96,7 @@ export const ThemeToggle = () => {
       overlay.style.clipPath = 'circle(150% at 85% 15%)';
     });
 
-    // Change theme halfway through animation
+    // Change actual theme halfway through animation
     setTimeout(() => {
       setIsDark(newTheme);
 
@@ -66,9 +109,11 @@ export const ThemeToggle = () => {
       }
     }, 400);
 
-    // Clean up overlay
+    // Clean up overlay and restore transitions
     setTimeout(() => {
       document.body.removeChild(overlay);
+      document.body.style.transition = '';
+      document.documentElement.style.transition = '';
       setIsTransitioning(false);
     }, 800);
   };
