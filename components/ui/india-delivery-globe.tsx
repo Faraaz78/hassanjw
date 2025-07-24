@@ -200,8 +200,8 @@ const IndiaDeliveryGlobe = () => {
     let animationPhase = 'spinning'; // 'spinning', 'positioning', 'stopped'
     let spinTime = 0;
     let positionTime = 0;
-    const spinDuration = 2000; // 4 seconds of spinning
-    const positionDuration = 1500; // 2.5 seconds to position to India
+    const spinDuration = 2000; // 2 seconds of spinning
+    const positionDuration = 1500; // 1.5 seconds to position to India
 
     // Calculate target rotation to center India facing the camera
     const indiaLat = 20.5937; // Geographic center of India
