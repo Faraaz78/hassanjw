@@ -31,48 +31,38 @@ export const ThemeToggle = () => {
     const newTheme = !isDark;
     setIsTransitioning(true);
 
-    // Create a simple overlay with the target theme colors
-    const overlay = document.createElement('div');
-    overlay.style.cssText = `
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 9998;
-      pointer-events: none;
-      background: ${newTheme ? 'linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #2a1810 100%)' : 'linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #fff8e1 100%)'};
-      clip-path: circle(0% at 85% 15%);
-      transition: clip-path 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-    `;
+    // Add smooth transition classes to all elements
+    document.documentElement.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+    document.body.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
 
-    document.body.appendChild(overlay);
+    // Add transition to all elements
+    const allElements = document.querySelectorAll('*');
+    allElements.forEach(el => {
+      (el as HTMLElement).style.transition = 'background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease';
+    });
 
-    // Trigger the radial expansion
+    // Change theme immediately with smooth transition
+    setIsDark(newTheme);
+
+    if (newTheme) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+
+    // Clean up transitions after animation completes
     setTimeout(() => {
-      overlay.style.clipPath = 'circle(150% at 85% 15%)';
-    }, 50);
+      document.documentElement.style.transition = '';
+      document.body.style.transition = '';
 
-    // Change theme when circle reaches about 50% expansion
-    setTimeout(() => {
-      setIsDark(newTheme);
+      allElements.forEach(el => {
+        (el as HTMLElement).style.transition = '';
+      });
 
-      if (newTheme) {
-        document.documentElement.classList.add("dark");
-        localStorage.setItem("theme", "dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-        localStorage.setItem("theme", "light");
-      }
-    }, 350);
-
-    // Clean up overlay
-    setTimeout(() => {
-      if (document.body.contains(overlay)) {
-        document.body.removeChild(overlay);
-      }
       setIsTransitioning(false);
-    }, 750);
+    }, 500);
   };
 
   return (
