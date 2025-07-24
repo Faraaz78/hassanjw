@@ -165,7 +165,7 @@ const IndiaDeliveryGlobe = () => {
         context.fillRect(0, 0, canvas.width, canvas.height);
 
         context.fillStyle = 'white';
-        context.font = 'bold 20px Arial';
+        context.font = 'bold 24px Arial';
         context.textAlign = 'center';
         context.textBaseline = 'middle';
         context.fillText(location.name, canvas.width / 2, canvas.height / 2);
