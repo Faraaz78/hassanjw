@@ -208,7 +208,7 @@ const IndiaDeliveryGlobe = () => {
     const indiaLng = 78.9629;
 
     // Fixed rotation calculations to make India face the camera
-    const targetRotationY = -(indiaLng * Math.PI / 180) +5.1; // Add π to flip to face camera
+    const targetRotationY = -(indiaLng * Math.PI / 180) +4.1; // Add π to flip to face camera
     const targetRotationX = (indiaLat * Math.PI / 180) +6.1; // Positive to tilt correctly
 
     let startRotationY = 0;
