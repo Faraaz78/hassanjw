@@ -710,7 +710,10 @@ export const HeroSection = () => {
         transition={{ duration: 0.8, delay: 1.8 }}
         className="absolute bottom-8 left-8 z-30 hidden lg:block"
       >
-        
+        <div className="bg-white/80 dark:bg-black/80 backdrop-blur-sm rounded-xl p-4 border border-gold-200/50 dark:border-gold-700/50 shadow-lg">
+          <div className="text-2xl font-bold text-gold-600 dark:text-gold-400">50+</div>
+          <div className="text-sm text-gray-600 dark:text-gray-300">Years Experience</div>
+        </div>
       </motion.div>
 
       {/* Achievement Badge - Top Right */}
@@ -720,7 +723,10 @@ export const HeroSection = () => {
         transition={{ duration: 0.8, delay: 2.0 }}
         className="absolute top-32 right-8 z-30 hidden lg:block"
       >
-        
+        <div className="bg-gradient-to-br from-gold-400 to-gold-600 text-black rounded-full p-3 shadow-xl">
+          <div className="text-xs font-bold text-center">AWARD</div>
+          <div className="text-xs text-center">WINNING</div>
+        </div>
       </motion.div>
     </section>
   );
