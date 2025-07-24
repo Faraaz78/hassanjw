@@ -639,7 +639,8 @@ export const HeroSection = () => {
                                 alt="Hassan Jewellers Store - Laptop Dark View"
                                 className="w-full h-full object-cover rounded-md"
                               />
-                              <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-black/10" />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-gold-900/10 rounded-md" />
+                              <div className="absolute inset-0 bg-gradient-to-br from-gold-900/5 via-transparent to-black/30 rounded-md" />
                             </div>
                           </div>
 
