@@ -438,11 +438,63 @@ export const HeroSection = () => {
                 {/* Emerald Earring - Bottom Right */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8, rotate: 15 }}
-                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                  transition={{ duration: 1, delay: 1.6 }}
+                  animate={{
+                    opacity: 1,
+                    scale: 1,
+                    rotate: [45, 50, 40, 45]
+                  }}
+                  transition={{
+                    duration: 1,
+                    delay: 1.6,
+                    rotate: { duration: 3, repeat: Infinity, ease: "easeInOut" }
+                  }}
                   className="absolute bottom-12 right-8 w-16 h-16 z-10"
                 >
-                  <div className="w-full h-full bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-lg shadow-xl border-2 border-yellow-400 transform rotate-45"></div>
+                  <div className="w-full h-full bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-lg shadow-xl border-2 border-yellow-400 transform rotate-45">
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent rounded-lg"></div>
+                  </div>
+                </motion.div>
+
+                {/* Additional Jewelry Elements */}
+                {/* Ruby Ring - Center Top */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{
+                    opacity: 1,
+                    scale: [1, 1.2, 1],
+                    y: [0, -10, 0]
+                  }}
+                  transition={{
+                    duration: 1,
+                    delay: 1.8,
+                    scale: { duration: 2.5, repeat: Infinity, ease: "easeInOut" },
+                    y: { duration: 3.5, repeat: Infinity, ease: "easeInOut" }
+                  }}
+                  className="absolute top-4 left-1/2 -translate-x-1/2 w-14 h-14 z-10"
+                >
+                  <div className="w-full h-full bg-gradient-to-br from-red-500 to-red-700 rounded-full shadow-lg border-2 border-gold-400">
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent rounded-full"></div>
+                  </div>
+                </motion.div>
+
+                {/* Pearl Necklace - Left Center */}
+                <motion.div
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={{
+                    opacity: 1,
+                    x: 0,
+                    rotate: [0, 10, -10, 0]
+                  }}
+                  transition={{
+                    duration: 1,
+                    delay: 2.0,
+                    rotate: { duration: 4.5, repeat: Infinity, ease: "easeInOut" }
+                  }}
+                  className="absolute left-2 top-1/2 -translate-y-1/2 w-12 h-12 z-10"
+                >
+                  <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-300 rounded-full shadow-lg border border-gold-300">
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/60 to-transparent rounded-full"></div>
+                  </div>
                 </motion.div>
               </div>
 
