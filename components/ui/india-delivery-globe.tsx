@@ -89,7 +89,7 @@ const IndiaDeliveryGlobe = () => {
     const starsCount = 5000;
     const positions = new Float32Array(starsCount * 3);
 
-    for (let i = 0; i < starsCount * 6; i++) {
+    for (let i = 0; i < starsCount * 3; i++) {
       positions[i] = (Math.random() - 0.5) * 1000;
     }
 
@@ -203,13 +203,16 @@ const IndiaDeliveryGlobe = () => {
     const spinDuration = 4000; // 4 seconds of spinning
     const positionDuration = 2500; // 2.5 seconds to position to India
 
-    // Calculate target rotation to center India (lat: 20.5937, lng: 78.9629)
+    // Calculate target rotation to center India facing the camera
     const indiaLat = 20.5937; // Geographic center of India
     const indiaLng = 78.9629;
 
-    // Convert India's coordinates to target rotations
-    const indiaRotationY = -(indiaLng * Math.PI / 180); // Longitude controls Y rotation
-    const indiaRotationX = -(indiaLat * Math.PI / 180); // Latitude controls X rotation
+    // Fixed rotation calculations to make India face the camera
+    const targetRotationY = -(indiaLng * Math.PI / 180) + Math.PI; // Add π to flip to face camera
+    const targetRotationX = (indiaLat * Math.PI / 180); // Positive to tilt correctly
+
+    let startRotationY = 0;
+    let startRotationX = 0;
 
     // Animation loop
     const animate = () => {
@@ -226,24 +229,24 @@ const IndiaDeliveryGlobe = () => {
           animationPhase = 'positioning';
           positionTime = 0;
           // Store the current rotation as starting point
-          const startY = earth.rotation.y;
-          const startX = earth.rotation.x;
+          startRotationY = earth.rotation.y;
+          startRotationX = earth.rotation.x;
         }
       } else if (animationPhase === 'positioning') {
-        // Smooth transition to India - keep it simple
+        // Smooth transition to India facing the camera
         positionTime += 16;
         const progress = Math.min(positionTime / positionDuration, 1);
         const easeProgress = 1 - Math.pow(1 - progress, 3); // Ease out cubic
 
-        // Simple approach - just slow down to target position
-        earth.rotation.y += (indiaRotationY - earth.rotation.y) * 0.05;
-        earth.rotation.x += (indiaRotationX - earth.rotation.x) * 0.05;
+        // Interpolate from current position to target position
+        earth.rotation.y = startRotationY + (targetRotationY - startRotationY) * easeProgress;
+        earth.rotation.x = startRotationX + (targetRotationX - startRotationX) * easeProgress;
 
         if (progress >= 1) {
           animationPhase = 'stopped';
           // Lock the rotation to India position
-          earth.rotation.y = indiaRotationY;
-          earth.rotation.x = indiaRotationX;
+          earth.rotation.y = targetRotationY;
+          earth.rotation.x = targetRotationX;
 
           // Show labels with fade-in effect
           markerGroup.children.forEach((child) => {
@@ -254,8 +257,9 @@ const IndiaDeliveryGlobe = () => {
           });
         }
       } else if (animationPhase === 'stopped') {
-        // Globe is stopped, showing India - no rotation
+        // Globe is stopped, showing India facing the camera
         // Keep the globe completely stationary
+        
         // Fade in labels
         markerGroup.children.forEach((child) => {
           if ((child as any).userData && (child as any).userData.showLabel) {
@@ -310,25 +314,12 @@ const IndiaDeliveryGlobe = () => {
 
     window.addEventListener('resize', handleResize);
 
-    // Mouse interaction for idle phase
-    let mouseX = 0;
-    let mouseY = 0;
-
-    const onMouseMove = (event: MouseEvent) => {
-      // Remove mouse interaction - globe stays fixed on India
-    };
-
-    if (containerRef.current) {
-      containerRef.current.addEventListener('mousemove', onMouseMove);
-    }
-
     // Cleanup
     return () => {
       if (animationIdRef.current) {
         cancelAnimationFrame(animationIdRef.current);
       }
       if (containerRef.current && renderer.domElement) {
-        containerRef.current.removeEventListener('mousemove', onMouseMove);
         containerRef.current.removeChild(renderer.domElement);
       }
       window.removeEventListener('resize', handleResize);
