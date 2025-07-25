@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { GoldHoverBorderGradient } from "@/components/ui/gold-buttons";
 import { Card } from "@/components/ui/card";
 import { Sparkles } from "@/components/ui/sparkles";
 import { ArrowLeft, Check, Calculator, Phone, Mail, MapPin } from "lucide-react";
@@ -304,31 +304,28 @@ export default function SavingsSchemePage() {
                 </h2>
                 
                 <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
-                  <Button
+                  <GoldHoverBorderGradient
+                    variant="primary"
                     size="lg"
-                    className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black font-semibold px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-                    asChild
+                    className="px-8"
+                    as="a"
+                    href="https://wa.me/9787812341?text=Hi!%20I'm%20interested%20in%20enrolling%20in%20your%20savings%20scheme.%20Could%20you%20please%20provide%20more%20details%3F"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    <a
-                      href="https://wa.me/9787812341?text=Hi!%20I'm%20interested%20in%20enrolling%20in%20your%20savings%20scheme.%20Could%20you%20please%20provide%20more%20details%3F" 
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Calculator className="mr-2 h-5 w-5" />
-                      Enroll Now
-                    </a>
-                  </Button>
-                  <Button
-                    asChild
+                    <Calculator className="mr-2 h-5 w-5" />
+                    Enroll Now
+                  </GoldHoverBorderGradient>
+                  <GoldHoverBorderGradient
                     variant="outline"
                     size="lg"
-                    className="border-gold-500 text-gold-600 dark:text-gold-400 hover:bg-gold-50 hover:text-gold-700 dark:hover:bg-gold-900/20 dark:hover:text-gold-300 px-8 py-3 rounded-full"
+                    className="px-8"
+                    as="a"
+                    href="#contact"
                   >
-                    <a href="#contact">
-                      <Phone className="mr-2 h-5 w-5" />
-                      Contact Us
-                    </a>
-                  </Button>
+                    <Phone className="mr-2 h-5 w-5" />
+                    Contact Us
+                  </GoldHoverBorderGradient>
                 </div>
                 
                 <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">

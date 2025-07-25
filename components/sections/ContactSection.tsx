@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { CardSpotlight } from "@/components/ui/card-spotlight";
 import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
-import { MagicButton } from "@/components/ui/magic-button";
+import { GoldHoverBorderGradient } from "@/components/ui/gold-buttons";
 import { ColorfulText } from "@/components/ui/colorful-text";
 import { PartyPopper } from "@/components/ui/party-popper";
 import { 
@@ -151,9 +151,14 @@ export const ContactSection = () => {
                   />
                 </div>
 
-                                <MagicButton variant="primary" size="lg" className="w-full">
+                <GoldHoverBorderGradient
+                  variant="primary"
+                  size="lg"
+                  className="w-full"
+                  type="submit"
+                >
                   Send Message
-                </MagicButton>
+                </GoldHoverBorderGradient>
               </form>
             </CardSpotlight>
           </motion.div>
