@@ -308,7 +308,7 @@ export default function SavingsSchemePage() {
                     asChild
                   >
                     <a
-                      href="https://wa.me/9445587067?text=Hi!%20I'm%20interested%20in%20enrolling."
+                      href="https://wa.me/9787812341?text=Hi!%20I'm%20interested%20in%20enrolling."
                       target="_blank"
                       rel="noopener noreferrer"
                     >
