@@ -131,6 +131,49 @@ export const FloatingNav = ({
           </button>
         </div>
       </motion.div>
+
+      {/* Mobile Menu Dropdown */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden fixed top-16 sm:top-22 left-4 right-4 mx-auto max-w-sm bg-white/95 dark:bg-black/95 backdrop-blur-md border border-gold-200 dark:border-gold-500 rounded-2xl shadow-lg z-[4999] p-4"
+          >
+            <div className="flex flex-col space-y-3">
+              {navItems.map((navItem: any, idx: number) => {
+                const isHashLink = navItem.link.startsWith('#');
+
+                if (isHashLink) {
+                  return (
+                    <a
+                      key={`mobile-link=${idx}`}
+                      href={navItem.link}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="text-gray-800 dark:text-gold-300 hover:text-gold-700 dark:hover:text-gold-100 transition-colors duration-300 px-4 py-3 rounded-lg hover:bg-gold-50 dark:hover:bg-gold-900/20 text-base font-medium"
+                    >
+                      {navItem.name}
+                    </a>
+                  );
+                }
+
+                return (
+                  <Link
+                    key={`mobile-link=${idx}`}
+                    href={navItem.link}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="text-gray-800 dark:text-gold-200 hover:text-gold-700 dark:hover:text-gold-300 transition-colors duration-300 px-4 py-3 rounded-lg hover:bg-gold-50 dark:hover:bg-gold-900/20 text-base font-medium"
+                  >
+                    {navItem.name}
+                  </Link>
+                );
+              })}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </AnimatePresence>
   );
 };
