@@ -28,7 +28,7 @@ const contactInfo = [
   {
     icon: <FaEnvelope className="text-gold-500 text-xl mt-1" />,
     title: "Email",
-    content: "info@hassanjewellers.com"
+    content: "hassanjewellers.office@gmail.com"
   },
   {
     icon: <FaClock className="text-gold-500 text-xl mt-1" />,
