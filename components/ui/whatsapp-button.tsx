@@ -6,9 +6,11 @@ import { FaWhatsapp } from "react-icons/fa";
 
 export const WhatsAppButton = () => {
   const handleWhatsAppClick = () => {
-    const phoneNumber = "+919876543210"; // Replace with actual phone number
+    const phoneNumber = "+919787812341";
     const message = "Hello! I'm interested in your jewelry collection.";
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+      message,
+    )}`;
     window.open(whatsappUrl, "_blank");
   };
 

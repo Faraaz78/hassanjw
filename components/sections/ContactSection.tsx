@@ -170,16 +170,12 @@ export const ContactSection = () => {
                 </div>
 
                 <GoldHoverBorderGradient
+                  type="submit"
                   variant="primary"
                   size="lg"
-                  className="w-full"
+                  className="w-full text-center"
                 >
-                  <button
-                    type="submit"
-                    className="w-full h-full bg-transparent border-none outline-none"
-                  >
-                    Send Message
-                  </button>
+                  Send Message
                 </GoldHoverBorderGradient>
               </form>
             </CardSpotlight>

@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useEffect, useRef } from 'react';
-import * as THREE from 'three';
+import React, { useEffect, useRef } from "react";
+import * as THREE from "three";
 
 const IndiaDeliveryGlobe = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -11,22 +11,37 @@ const IndiaDeliveryGlobe = () => {
 
   // Indian delivery locations with coordinates
   const deliveryLocations = [
-    { name: 'Mumbai', lat: 19.0760, lng: 72.8777 },
-    { name: 'Bangalore', lat: 12.9716, lng: 77.5946 },
-    { name: 'Chennai', lat: 13.0827, lng: 80.2707 },
-    { name: 'Hyderabad', lat: 17.3850, lng: 78.4867 },
-    { name: 'Kochi', lat: 9.9312, lng: 76.2673 },
-    { name: 'Mysore', lat: 12.2958, lng: 76.6394 },
-    { name: 'Srinagar', lat: 34.0837, lng: 74.7973 },
-    { name: 'Ahmedabad', lat: 23.0225, lng: 72.5714 },
-    { name: 'Delhi', lat: 28.7041, lng: 77.1025 },
-    { name: 'Kolkata', lat: 22.5726, lng: 88.3639 },
-    { name: 'Pune', lat: 18.5204, lng: 73.8567 },
-    { name: 'Jaipur', lat: 26.9124, lng: 75.7873 },
-    { name: 'Lucknow', lat: 26.8467, lng: 80.9462 },
-    { name: 'Kanpur', lat: 26.4499, lng: 80.3319 },
-    { name: 'Nagpur', lat: 21.1458, lng: 79.0882 },
-    { name: 'Indore', lat: 22.7196, lng: 75.8577 }
+    { name: "Mumbai", lat: 19.076, lng: 72.8777 },
+    { name: "Bangalore", lat: 12.9716, lng: 77.5946 },
+    { name: "Chennai", lat: 13.0827, lng: 80.2707 },
+    { name: "Hyderabad", lat: 17.385, lng: 78.4867 },
+    { name: "Srinagar", lat: 34.0837, lng: 74.7973 },
+    { name: "Ahmedabad", lat: 23.0225, lng: 72.5714 },
+    { name: "Delhi", lat: 28.7041, lng: 77.1025 },
+    { name: "Pune", lat: 18.5204, lng: 73.8567 },
+    { name: "Lucknow", lat: 26.8467, lng: 80.9462 },
+
+    // { name: "Dubai", lat: 25.2048, lng: 55.2708 },
+    // { name: "Riyadh", lat: 24.7136, lng: 46.6753 }, // Capital of Saudi Arabia
+    // { name: "Jeddah", lat: 21.4858, lng: 39.1925 }, // Major city in Saudi Arabia
+
+    // { name: "Lahore, Pakistan", lat: 31.5204, lng: 74.3587 },
+    // { name: "Islamabad, Pakistan", lat: 33.6844, lng: 73.0479 },
+
+    // { name: "Rome, Italy", lat: 41.9028, lng: 12.4964 },
+
+    // // Turkey
+    // { name: "Istanbul, Turkey", lat: 41.0082, lng: 28.9784 },
+
+    // // Gulf Region
+    // { name: "Muscat, Oman", lat: 23.5859, lng: 58.4059 },
+
+    // { name: "Manama, Bahrain", lat: 26.2285, lng: 50.5861 },
+    // { name: "Kuwait City, Kuwait", lat: 29.3759, lng: 47.9774 },
+
+    // { name: "Kuala Lumpur, Malaysia", lat: 3.139, lng: 101.6869 },
+    // { name: "Jakarta, Indonesia", lat: -6.2088, lng: 106.8456 },
+    // { name: "Melbourne, Australia", lat: -37.8136, lng: 144.9631 },
   ];
 
   useEffect(() => {
@@ -37,18 +52,21 @@ const IndiaDeliveryGlobe = () => {
     scene.background = new THREE.Color(0x000011);
     sceneRef.current = scene;
 
-    // Camera setup
+    // Camera setup - moved closer to enlarge view
     const camera = new THREE.PerspectiveCamera(
-      40,
+      45, // Increased FOV for better view
       containerRef.current.clientWidth / containerRef.current.clientHeight,
       0.1,
-      1000
+      1000,
     );
-    camera.position.set(0, 0, 6);
+    camera.position.set(0, 0, 5.2); // Moved camera closer
 
     // Renderer setup
     const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(containerRef.current.clientWidth, containerRef.current.clientHeight);
+    renderer.setSize(
+      containerRef.current.clientWidth,
+      containerRef.current.clientHeight,
+    );
     containerRef.current.appendChild(renderer.domElement);
     rendererRef.current = renderer;
 
@@ -61,25 +79,25 @@ const IndiaDeliveryGlobe = () => {
     directionalLight.position.set(5, 5, 5);
     scene.add(directionalLight);
 
-    // Create Earth sphere
+    // Create Earth sphere - slightly larger
     const earthGeometry = new THREE.SphereGeometry(1.5, 64, 64);
     const earthMaterial = new THREE.MeshPhongMaterial({
       color: 0x1a1a2e,
       shininess: 10,
       transparent: true,
-      opacity: 0.9
+      opacity: 0.9,
     });
 
     const earth = new THREE.Mesh(earthGeometry, earthMaterial);
     scene.add(earth);
 
     // Add continent wireframe
-    const wireframeGeometry = new THREE.SphereGeometry(1.52, 32, 32);
+    const wireframeGeometry = new THREE.SphereGeometry(1.72, 32, 32);
     const wireframeMaterial = new THREE.MeshBasicMaterial({
       color: 0xffd700,
       wireframe: true,
       transparent: true,
-      opacity: 0.2
+      opacity: 0.2,
     });
     const wireframe = new THREE.Mesh(wireframeGeometry, wireframeMaterial);
     scene.add(wireframe);
@@ -93,18 +111,21 @@ const IndiaDeliveryGlobe = () => {
       positions[i] = (Math.random() - 0.5) * 1000;
     }
 
-    starsGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    starsGeometry.setAttribute(
+      "position",
+      new THREE.BufferAttribute(positions, 3),
+    );
     const starsMaterial = new THREE.PointsMaterial({
       color: 0xffffff,
       size: 2,
       transparent: true,
-      opacity: 0.8
+      opacity: 0.8,
     });
     const stars = new THREE.Points(starsGeometry, starsMaterial);
     scene.add(stars);
 
     // Function to convert lat/lng to 3D coordinates
-    const latLngToVector3 = (lat: number, lng: number, radius = 1.53) => {
+    const latLngToVector3 = (lat: number, lng: number, radius = 1.73) => {
       const phi = (lat * Math.PI) / 180; // Convert to radians
       const theta = ((lng - 180) * Math.PI) / 180; // Convert to radians, adjust for Three.js coordinate system
 
@@ -119,23 +140,23 @@ const IndiaDeliveryGlobe = () => {
     const markerGroup = new THREE.Group();
     scene.add(markerGroup);
 
-    // Create markers and labels
+    // Create markers and labels - made larger
     deliveryLocations.forEach((location, index) => {
       const position = latLngToVector3(location.lat, location.lng);
 
-      // Create marker pin (elongated sphere)
-      const markerGeometry = new THREE.SphereGeometry(0.04, 8, 8);
+      // Create marker pin (larger)
+      const markerGeometry = new THREE.SphereGeometry(0.05, 8, 8);
       const markerMaterial = new THREE.MeshBasicMaterial({
         color: 0xff3333,
         transparent: true,
-        opacity: 1
+        opacity: 1,
       });
       const marker = new THREE.Mesh(markerGeometry, markerMaterial);
       marker.position.copy(position);
       markerGroup.add(marker);
 
-      // Create pin stick
-      const stickGeometry = new THREE.CylinderGeometry(0.005, 0.005, 0.1);
+      // Create pin stick (larger)
+      const stickGeometry = new THREE.CylinderGeometry(0.007, 0.007, 0.12);
       const stickMaterial = new THREE.MeshBasicMaterial({ color: 0xff3333 });
       const stick = new THREE.Mesh(stickGeometry, stickMaterial);
       const stickPosition = position.clone().multiplyScalar(1.05);
@@ -143,44 +164,44 @@ const IndiaDeliveryGlobe = () => {
       stick.lookAt(0, 0, 0);
       markerGroup.add(stick);
 
-      // Create glow effect
-      const glowGeometry = new THREE.SphereGeometry(0.05, 16, 16);
+      // Create glow effect (larger)
+      const glowGeometry = new THREE.SphereGeometry(0.06, 16, 16);
       const glowMaterial = new THREE.MeshBasicMaterial({
         color: 0xff6600,
         transparent: true,
-        opacity: 0.3
+        opacity: 0.3,
       });
       const glow = new THREE.Mesh(glowGeometry, glowMaterial);
       glow.position.copy(position);
       markerGroup.add(glow);
 
-      // Create text label using HTML canvas
-      const canvas = document.createElement('canvas');
-      const context = canvas.getContext('2d');
+      // Create text label using HTML canvas (larger)
+      const canvas = document.createElement("canvas");
+      const context = canvas.getContext("2d");
       if (context) {
         canvas.width = 256;
         canvas.height = 64;
 
-        context.fillStyle = 'rgba(0, 0, 0, 0.8)';
+        context.fillStyle = "rgba(0, 0, 0, 0.8)";
         context.fillRect(0, 0, canvas.width, canvas.height);
 
-        context.fillStyle = 'white';
-        context.font = '35px Arial';
-        context.textAlign = 'center';
-        context.textBaseline = 'middle';
+        context.fillStyle = "white";
+        context.font = "38px Arial";
+        context.textAlign = "center";
+        context.textBaseline = "middle";
         context.fillText(location.name, canvas.width / 2, canvas.height / 2);
 
         const texture = new THREE.CanvasTexture(canvas);
         const labelMaterial = new THREE.MeshBasicMaterial({
           map: texture,
           transparent: true,
-          opacity: 0
+          opacity: 0,
         });
 
-        const labelGeometry = new THREE.PlaneGeometry(0.4, 0.1);
+        const labelGeometry = new THREE.PlaneGeometry(0.5, 0.12); // Larger labels
         const label = new THREE.Mesh(labelGeometry, labelMaterial);
 
-        const labelPosition = position.clone().multiplyScalar(1.2);
+        const labelPosition = position.clone().multiplyScalar(1.25);
         label.position.copy(labelPosition);
         label.lookAt(camera.position);
         markerGroup.add(label);
@@ -191,25 +212,25 @@ const IndiaDeliveryGlobe = () => {
           pulseSpeed: 0.02 + Math.random() * 0.02,
           marker: marker,
           label: label,
-          labelMaterial: labelMaterial
+          labelMaterial: labelMaterial,
         };
       }
     });
 
-    // Animation control variables
-    let animationPhase = 'spinning'; // 'spinning', 'positioning', 'stopped'
+    // Animation control variables - faster timing
+    let animationPhase = "spinning"; // 'spinning', 'positioning', 'stopped'
     let spinTime = 0;
     let positionTime = 0;
-    const spinDuration = 2000; // 2 seconds of spinning
-    const positionDuration = 1500; // 1.5 seconds to position to India
+    const spinDuration = 800; // Reduced from 1500 to 800ms - much faster spin
+    const positionDuration = 600; // Reduced from 1900 to 600ms - faster positioning
 
     // Calculate target rotation to center India facing the camera
     const indiaLat = 20.5937; // Geographic center of India
     const indiaLng = 78.9629;
 
     // Fixed rotation calculations to make India face the camera
-    const targetRotationY = -(indiaLng * Math.PI / 180) +4.3; // Add π to flip to face camera
-    const targetRotationX = (indiaLat * Math.PI / 180) +6.4; // Positive to tilt correctly
+    const targetRotationY = -((indiaLng * Math.PI) / 180) + 4.3;
+    const targetRotationX = (indiaLat * Math.PI) / 180 + 6.4;
 
     let startRotationY = 0;
     let startRotationX = 0;
@@ -219,52 +240,63 @@ const IndiaDeliveryGlobe = () => {
       animationIdRef.current = requestAnimationFrame(animate);
       const currentTime = Date.now();
 
-      if (animationPhase === 'spinning') {
-        // Fast spinning phase
-        earth.rotation.y += 0.02;
-        earth.rotation.x += 0.005;
+      if (animationPhase === "spinning") {
+        // Much faster spinning phase
+        earth.rotation.y += 0.06; // Increased from 0.02 to 0.06
+        earth.rotation.x += 0.015; // Increased from 0.005 to 0.015
 
         spinTime += 16; // Approximate frame time
         if (spinTime >= spinDuration) {
-          animationPhase = 'positioning';
+          animationPhase = "positioning";
           positionTime = 0;
           // Store the current rotation as starting point
           startRotationY = earth.rotation.y;
           startRotationX = earth.rotation.x;
         }
-      } else if (animationPhase === 'positioning') {
-        // Smooth transition to India facing the camera
+      } else if (animationPhase === "positioning") {
+        // Faster transition to India facing the camera
         positionTime += 16;
         const progress = Math.min(positionTime / positionDuration, 1);
-        const easeProgress = 1 - Math.pow(1 - progress, 3); // Ease out cubic
+        const easeProgress = 1 - Math.pow(1 - progress, 4); // Stronger ease out for snappier stop
 
         // Interpolate from current position to target position
-        earth.rotation.y = startRotationY + (targetRotationY - startRotationY) * easeProgress;
-        earth.rotation.x = startRotationX + (targetRotationX - startRotationX) * easeProgress;
+        earth.rotation.y =
+          startRotationY + (targetRotationY - startRotationY) * easeProgress;
+        earth.rotation.x =
+          startRotationX + (targetRotationX - startRotationX) * easeProgress;
 
         if (progress >= 1) {
-          animationPhase = 'stopped';
+          animationPhase = "stopped";
           // Lock the rotation to India position
           earth.rotation.y = targetRotationY;
           earth.rotation.x = targetRotationX;
 
-          // Show labels with fade-in effect
+          // Show labels with faster fade-in effect
           markerGroup.children.forEach((child) => {
-            if ((child as any).userData && (child as any).userData.labelMaterial) {
+            if (
+              (child as any).userData &&
+              (child as any).userData.labelMaterial
+            ) {
               (child as any).userData.showLabel = true;
               (child as any).userData.labelFadeTime = 0;
             }
           });
         }
-      } else if (animationPhase === 'stopped') {
+      } else if (animationPhase === "stopped") {
         // Globe is stopped, showing India facing the camera
         // Keep the globe completely stationary
-        
-        // Fade in labels
+
+        // Faster fade in labels
         markerGroup.children.forEach((child) => {
           if ((child as any).userData && (child as any).userData.showLabel) {
-            (child as any).userData.labelFadeTime = Math.min((child as any).userData.labelFadeTime + 16, 1000);
-            const labelOpacity = Math.min((child as any).userData.labelFadeTime / 1000, 1);
+            (child as any).userData.labelFadeTime = Math.min(
+              (child as any).userData.labelFadeTime + 24, // Faster fade
+              600, // Reduced from 1000 to 600ms
+            );
+            const labelOpacity = Math.min(
+              (child as any).userData.labelFadeTime / 600,
+              1,
+            );
             (child as any).userData.labelMaterial.opacity = labelOpacity;
 
             // Update label orientation to face camera
@@ -281,9 +313,13 @@ const IndiaDeliveryGlobe = () => {
 
       // Animate marker glows
       markerGroup.children.forEach((child) => {
-        if ((child as any).userData && (child as any).userData.originalOpacity !== undefined) {
+        if (
+          (child as any).userData &&
+          (child as any).userData.originalOpacity !== undefined
+        ) {
           const time = Date.now() * (child as any).userData.pulseSpeed;
-          const opacity = (child as any).userData.originalOpacity + Math.sin(time) * 0.2;
+          const opacity =
+            (child as any).userData.originalOpacity + Math.sin(time) * 0.2;
           (child as any).material.opacity = Math.max(0.1, opacity);
 
           const scale = 1 + Math.sin(time * 1.5) * 0.1;
@@ -312,7 +348,7 @@ const IndiaDeliveryGlobe = () => {
       }
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     // Cleanup
     return () => {
@@ -322,7 +358,7 @@ const IndiaDeliveryGlobe = () => {
       if (containerRef.current && renderer.domElement) {
         containerRef.current.removeChild(renderer.domElement);
       }
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
       renderer.dispose();
     };
   }, []);

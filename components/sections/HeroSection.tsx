@@ -185,7 +185,9 @@ const MacBook: React.FC<MacBookProps> = ({
 
 export const HeroSection = () => {
   const [isMobile, setIsMobile] = useState(false);
-  const [particles, setParticles] = useState<Array<{ left: number, top: number }>>([]);
+  const [particles, setParticles] = useState<
+    Array<{ left: number; top: number }>
+  >([]);
 
   useEffect(() => {
     const checkDevice = () => {
@@ -212,13 +214,13 @@ export const HeroSection = () => {
 
   // Navigation handlers
   const handleExploreCollections = () => {
-    window.open('https://www.instagram.com/hassanjewellers', '_blank');
+    window.open("https://www.instagram.com/hassanjewellers", "_blank");
   };
 
   const handleBookConsultation = () => {
-    const contactSection = document.querySelector('#contact');
+    const contactSection = document.querySelector("#contact");
     if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
+      contactSection.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -228,7 +230,7 @@ export const HeroSection = () => {
       <div className="dark:block hidden">
         <BackgroundBeams className="absolute inset-0 opacity-20" />
       </div>
-      
+
       {/* Floating Particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {particles.map((particle, i) => (
@@ -255,10 +257,10 @@ export const HeroSection = () => {
 
       {/* Background gradients */}
       <div className="absolute inset-0 bg-gradient-to-br from-white via-amber-50/20 to-yellow-50/40 dark:from-black dark:via-amber-950/30 dark:to-yellow-900/20" />
-      
+
       {/* Additional gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-50/10 to-transparent dark:from-black/50 dark:via-yellow-900/20 dark:to-black/50" />
-      
+
       {/* Dark mode gold accent overlay */}
       <div className="absolute inset-0 hidden dark:block bg-gradient-to-tr from-amber-900/10 via-transparent to-yellow-800/5" />
 
@@ -283,16 +285,16 @@ export const HeroSection = () => {
                   {/* Light Mode Hassan Logo */}
                   <div className="dark:hidden">
                     <img
-                      src="https://cdn.builder.io/api/v1/image/assets%2F1d129d8828c04421a1872f3de005dbe7%2F9d2ebe9e76a54d609fdf92b5dd22fe88?format=webp&width=800"
+                      src="/images/hassanlogo.png"
                       alt="Hassan Jewellers Logo Light"
                       className="w-full h-auto object-contain drop-shadow-lg filter brightness-110"
                     />
                   </div>
-                  
+
                   {/* Dark Mode Hassan Logo */}
                   <div className="hidden dark:block">
                     <img
-                      src="https://cdn.builder.io/api/v1/image/assets%2F1d129d8828c04421a1872f3de005dbe7%2F9d2ebe9e76a54d609fdf92b5dd22fe88?format=webp&width=800"
+                      src="/images/hassanlogo.png"
                       alt="Hassan Jewellers Logo Dark"
                       className="w-full h-auto object-contain drop-shadow-lg"
                     />
@@ -312,7 +314,7 @@ export const HeroSection = () => {
                     "Finest Handcrafted Jewelry Collection.",
                     "Tradition Meets Luxury Always.",
                     "Elegance Redefined by Hassan.",
-                    "Crafting Timeless Dream Treasures."
+                    "Crafting Timeless Dream Treasures.",
                   ]}
                   className="text-lg md:text-xl text-gray-700 dark:text-amber-100"
                   cursorClassName="text-amber-500 dark:text-yellow-400"
@@ -321,7 +323,7 @@ export const HeroSection = () => {
                   delayBetweenWords={2500}
                 />
               </motion.div>
-              
+
               {/* Trust Badges */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -342,7 +344,7 @@ export const HeroSection = () => {
                   <span>10,000+ Happy Customers</span>
                 </div>
               </motion.div>
-              
+
               {/* CTA Buttons */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -381,17 +383,21 @@ export const HeroSection = () => {
                 {/* Golden Necklace - Top Left */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
-                  animate={{ 
-                    opacity: 1, 
-                    scale: 1, 
+                  animate={{
+                    opacity: 1,
+                    scale: 1,
                     rotate: [0, 5, -5, 0],
-                    y: [0, -5, 0]
+                    y: [0, -5, 0],
                   }}
-                  transition={{ 
-                    duration: 1, 
+                  transition={{
+                    duration: 1,
                     delay: 1.0,
-                    rotate: { duration: 4, repeat: Infinity, ease: "easeInOut" },
-                    y: { duration: 3, repeat: Infinity, ease: "easeInOut" }
+                    rotate: {
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    },
+                    y: { duration: 3, repeat: Infinity, ease: "easeInOut" },
                   }}
                   className="absolute top-8 left-8 w-24 h-24 z-10"
                 >
@@ -404,16 +410,20 @@ export const HeroSection = () => {
                 {/* Diamond Ring - Top Right */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8, rotate: 10 }}
-                  animate={{ 
-                    opacity: 1, 
-                    scale: [1, 1.1, 1], 
-                    rotate: [0, -5, 5, 0]
+                  animate={{
+                    opacity: 1,
+                    scale: [1, 1.1, 1],
+                    rotate: [0, -5, 5, 0],
                   }}
-                  transition={{ 
-                    duration: 1, 
+                  transition={{
+                    duration: 1,
                     delay: 1.2,
                     scale: { duration: 2, repeat: Infinity, ease: "easeInOut" },
-                    rotate: { duration: 5, repeat: Infinity, ease: "easeInOut" }
+                    rotate: {
+                      duration: 5,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    },
                   }}
                   className="absolute top-16 right-12 w-20 h-20 z-10"
                 >
@@ -426,17 +436,21 @@ export const HeroSection = () => {
                 {/* Golden Bracelet - Bottom Left */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8, rotate: -15 }}
-                  animate={{ 
-                    opacity: 1, 
-                    scale: 1, 
+                  animate={{
+                    opacity: 1,
+                    scale: 1,
                     rotate: [0, 3, -3, 0],
-                    x: [0, 3, -3, 0]
+                    x: [0, 3, -3, 0],
                   }}
-                  transition={{ 
-                    duration: 1, 
+                  transition={{
+                    duration: 1,
                     delay: 1.4,
-                    rotate: { duration: 6, repeat: Infinity, ease: "easeInOut" },
-                    x: { duration: 4, repeat: Infinity, ease: "easeInOut" }
+                    rotate: {
+                      duration: 6,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    },
+                    x: { duration: 4, repeat: Infinity, ease: "easeInOut" },
                   }}
                   className="absolute bottom-20 left-4 w-28 h-16 z-10"
                 >
@@ -448,15 +462,19 @@ export const HeroSection = () => {
                 {/* Emerald Earring - Bottom Right */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8, rotate: 15 }}
-                  animate={{ 
-                    opacity: 1, 
-                    scale: 1, 
-                    rotate: [45, 50, 40, 45]
+                  animate={{
+                    opacity: 1,
+                    scale: 1,
+                    rotate: [45, 50, 40, 45],
                   }}
-                  transition={{ 
-                    duration: 1, 
+                  transition={{
+                    duration: 1,
                     delay: 1.6,
-                    rotate: { duration: 3, repeat: Infinity, ease: "easeInOut" }
+                    rotate: {
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    },
                   }}
                   className="absolute bottom-12 right-8 w-16 h-16 z-10"
                 >
@@ -464,21 +482,25 @@ export const HeroSection = () => {
                     <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent rounded-lg"></div>
                   </div>
                 </motion.div>
-                
+
                 {/* Additional Jewelry Elements */}
                 {/* Ruby Ring - Center Top */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0 }}
-                  animate={{ 
-                    opacity: 1, 
+                  animate={{
+                    opacity: 1,
                     scale: [1, 1.2, 1],
-                    y: [0, -10, 0]
+                    y: [0, -10, 0],
                   }}
-                  transition={{ 
-                    duration: 1, 
+                  transition={{
+                    duration: 1,
                     delay: 1.8,
-                    scale: { duration: 2.5, repeat: Infinity, ease: "easeInOut" },
-                    y: { duration: 3.5, repeat: Infinity, ease: "easeInOut" }
+                    scale: {
+                      duration: 2.5,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    },
+                    y: { duration: 3.5, repeat: Infinity, ease: "easeInOut" },
                   }}
                   className="absolute top-4 left-1/2 -translate-x-1/2 w-14 h-14 z-10"
                 >
@@ -486,19 +508,23 @@ export const HeroSection = () => {
                     <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent rounded-full"></div>
                   </div>
                 </motion.div>
-                
+
                 {/* Pearl Necklace - Left Center */}
                 <motion.div
                   initial={{ opacity: 0, x: -50 }}
-                  animate={{ 
-                    opacity: 1, 
+                  animate={{
+                    opacity: 1,
                     x: 0,
-                    rotate: [0, 10, -10, 0]
+                    rotate: [0, 10, -10, 0],
                   }}
-                  transition={{ 
-                    duration: 1, 
+                  transition={{
+                    duration: 1,
                     delay: 2.0,
-                    rotate: { duration: 4.5, repeat: Infinity, ease: "easeInOut" }
+                    rotate: {
+                      duration: 4.5,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    },
                   }}
                   className="absolute left-2 top-1/2 -translate-y-1/2 w-12 h-12 z-10"
                 >
@@ -663,36 +689,36 @@ export const HeroSection = () => {
 
               {/* Enhanced Floating Elements */}
               <motion.div
-                animate={{ 
+                animate={{
                   y: [0, -15, 0],
                   scale: [1, 1.2, 1],
-                  opacity: [0.6, 1, 0.6]
+                  opacity: [0.6, 1, 0.6],
                 }}
                 transition={{ duration: 3, repeat: Infinity }}
                 className="absolute top-1/4 right-1/4 w-6 h-6 bg-gradient-to-br from-amber-400 to-yellow-600 dark:from-yellow-400 dark:to-amber-500 rounded-full shadow-lg"
               />
               <motion.div
-                animate={{ 
+                animate={{
                   y: [0, 15, 0],
                   rotate: [0, 180, 360],
-                  opacity: [0.4, 0.8, 0.4]
+                  opacity: [0.4, 0.8, 0.4],
                 }}
                 transition={{ duration: 2.5, repeat: Infinity, delay: 1 }}
                 className="absolute bottom-1/3 left-1/4 w-4 h-4 bg-gradient-to-br from-amber-500 to-yellow-700 dark:from-yellow-500 dark:to-amber-600 rounded-full shadow-md"
               />
               <motion.div
-                animate={{ 
+                animate={{
                   x: [0, 10, -10, 0],
                   y: [0, -5, 5, 0],
-                  scale: [1, 1.1, 0.9, 1]
+                  scale: [1, 1.1, 0.9, 1],
                 }}
                 transition={{ duration: 4, repeat: Infinity, delay: 0.5 }}
                 className="absolute top-1/2 right-1/3 w-3 h-3 bg-gradient-to-br from-amber-300 to-yellow-500 dark:from-yellow-300 dark:to-amber-400 rounded-full shadow-sm"
               />
               <motion.div
-                animate={{ 
+                animate={{
                   rotate: [0, 360],
-                  scale: [1, 1.3, 1]
+                  scale: [1, 1.3, 1],
                 }}
                 transition={{ duration: 5, repeat: Infinity, delay: 2 }}
                 className="absolute top-3/4 left-1/3 w-5 h-5 bg-gradient-to-br from-amber-400 to-orange-500 dark:from-yellow-400 dark:to-amber-500 rounded-full shadow-lg opacity-50"
