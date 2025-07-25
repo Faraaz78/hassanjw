@@ -5,18 +5,18 @@ import { motion } from "framer-motion";
 import { TypewriterEffect } from "@/components/ui/typewriter-effect";
 
 // Mock components - replace with your actual imports
-const MagicButton = ({ variant, size, className, children, ...props }: any) => (
+const MagicButton = ({ variant, size, className, children, onClick, ...props }: any) => (
   <button
     className={`
-      ${
-        variant === "primary"
-          ? "bg-gradient-to-r from-yellow-400 to-yellow-600 text-black"
-          : "border-2 border-yellow-400 text-yellow-600 bg-transparent"
+      ${variant === "primary"
+        ? "bg-gradient-to-r from-yellow-400 to-yellow-600 text-black"
+        : "border-2 border-yellow-400 text-yellow-600 bg-transparent"
       }
       ${size === "lg" ? "px-6 py-3 text-lg" : "px-4 py-2"}
       rounded-full font-semibold transition-all duration-300 hover:transform hover:scale-105
       ${className}
     `}
+    onClick={onClick}
     {...props}
   >
     {children}
@@ -201,7 +201,7 @@ const MacBook: React.FC<MacBookProps> = ({
 
 export const HeroSection = () => {
   const [isMobile, setIsMobile] = useState(false);
-  const [particles, setParticles] = useState<Array<{left: number, top: number}>>([]);
+  const [particles, setParticles] = useState<Array<{ left: number, top: number }>>([]);
 
   useEffect(() => {
     const checkDevice = () => {
@@ -225,6 +225,18 @@ export const HeroSection = () => {
     window.addEventListener("resize", checkDevice);
     return () => window.removeEventListener("resize", checkDevice);
   }, []);
+
+  // Navigation handlers
+  const handleExploreCollections = () => {
+    window.open('https://www.instagram.com/hassanjewellers', '_blank');
+  };
+
+  const handleBookConsultation = () => {
+    const contactSection = document.querySelector('#contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <section className="min-h-screen w-full bg-white dark:bg-black relative overflow-hidden">
@@ -326,8 +338,6 @@ export const HeroSection = () => {
                 />
               </motion.div>
 
-
-
               {/* Trust Badges */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -356,13 +366,19 @@ export const HeroSection = () => {
                 transition={{ duration: 0.8, delay: 0.8 }}
                 className="flex flex-col sm:flex-row gap-4"
               >
-                <MagicButton variant="primary" size="lg" className="px-8 shadow-lg hover:shadow-xl">
+                <MagicButton
+                  variant="primary"
+                  size="lg"
+                  className="px-8 shadow-lg hover:shadow-xl"
+                  onClick={handleExploreCollections}
+                >
                   Explore Collections
                 </MagicButton>
                 <MagicButton
                   variant="outline"
                   size="lg"
                   className="px-8 border-yellow-400 text-yellow-600 dark:border-yellow-400 dark:text-yellow-400 hover:bg-yellow-400 hover:text-black shadow-lg hover:shadow-xl"
+                  onClick={handleBookConsultation}
                 >
                   Book Consultation
                 </MagicButton>
@@ -702,12 +718,6 @@ export const HeroSection = () => {
           </div>
         </div>
       </div>
-
-      
-      
-
-      {/* Achievement Badge - Top Right */}
-      
     </section>
   );
 };
