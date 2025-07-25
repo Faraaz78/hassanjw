@@ -71,7 +71,7 @@ export const FloatingNav = ({
             if (isHashLink) {
               return (
                 <a
-                  key={`link=${idx}`}
+                  key={`desktop-link-${idx}`}
                   href={navItem.link}
                   className={cn(
                     "relative text-gray-800 dark:text-gold-300 items-center flex space-x-1 hover:text-gold-700 dark:hover:text-gold-100 transition-colors duration-300 px-3 py-2 rounded-md text-sm font-medium"
@@ -84,7 +84,7 @@ export const FloatingNav = ({
 
             return (
               <Link
-                key={`link=${idx}`}
+                key={`desktop-link-${idx}`}
                 href={navItem.link}
                 className={cn(
                   "relative text-gray-800 dark:text-gold-200 items-center flex space-x-1 hover:text-gold-700 dark:hover:text-gold-300 transition-colors duration-300 px-3 py-2 rounded-md text-sm font-medium"
