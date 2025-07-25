@@ -66,20 +66,43 @@ export const FloatingNav = ({
         )}
       >
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-4">
+        <div className="hidden md:flex items-center space-x-1">
           {navItems.map((navItem: any, idx: number) => {
             const isHashLink = navItem.link.startsWith('#');
+            const isActive = activeTab === navItem.name;
 
             if (isHashLink) {
               return (
                 <a
                   key={`desktop-link-${idx}`}
                   href={navItem.link}
+                  onClick={() => setActiveTab(navItem.name)}
                   className={cn(
-                    "relative text-gray-800 dark:text-gold-300 items-center flex space-x-1 hover:text-gold-700 dark:hover:text-gold-100 transition-colors duration-300 px-3 py-2 rounded-md text-sm font-medium"
+                    "relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-colors duration-300",
+                    isActive
+                      ? "text-gold-700 dark:text-gold-300"
+                      : "text-gray-600 dark:text-gray-400 hover:text-gold-700 dark:hover:text-gold-300"
                   )}
                 >
                   <span>{navItem.name}</span>
+                  {isActive && (
+                    <motion.div
+                      layoutId="lamp"
+                      className="absolute inset-0 w-full bg-gold-50/50 dark:bg-gold-900/20 rounded-full -z-10"
+                      initial={false}
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 30,
+                      }}
+                    >
+                      <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-gold-500 dark:bg-gold-400 rounded-t-full">
+                        <div className="absolute w-12 h-6 bg-gold-400/30 dark:bg-gold-400/20 rounded-full blur-md -top-2 -left-2" />
+                        <div className="absolute w-8 h-6 bg-gold-500/30 dark:bg-gold-400/30 rounded-full blur-md -top-1" />
+                        <div className="absolute w-4 h-4 bg-gold-600/40 dark:bg-gold-300/40 rounded-full blur-xs top-0 left-2" />
+                      </div>
+                    </motion.div>
+                  )}
                 </a>
               );
             }
@@ -88,18 +111,40 @@ export const FloatingNav = ({
               <Link
                 key={`desktop-link-${idx}`}
                 href={navItem.link}
+                onClick={() => setActiveTab(navItem.name)}
                 className={cn(
-                  "relative text-gray-800 dark:text-gold-200 items-center flex space-x-1 hover:text-gold-700 dark:hover:text-gold-300 transition-colors duration-300 px-3 py-2 rounded-md text-sm font-medium"
+                  "relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-colors duration-300",
+                  isActive
+                    ? "text-gold-700 dark:text-gold-300"
+                    : "text-gray-600 dark:text-gray-400 hover:text-gold-700 dark:hover:text-gold-300"
                 )}
               >
                 <span>{navItem.name}</span>
+                {isActive && (
+                  <motion.div
+                    layoutId="lamp"
+                    className="absolute inset-0 w-full bg-gold-50/50 dark:bg-gold-900/20 rounded-full -z-10"
+                    initial={false}
+                    transition={{
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 30,
+                    }}
+                  >
+                    <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-gold-500 dark:bg-gold-400 rounded-t-full">
+                      <div className="absolute w-12 h-6 bg-gold-400/30 dark:bg-gold-400/20 rounded-full blur-md -top-2 -left-2" />
+                      <div className="absolute w-8 h-6 bg-gold-500/30 dark:bg-gold-400/30 rounded-full blur-md -top-1" />
+                      <div className="absolute w-4 h-4 bg-gold-600/40 dark:bg-gold-300/40 rounded-full blur-xs top-0 left-2" />
+                    </div>
+                  </motion.div>
+                )}
               </Link>
             );
           })}
 
           <Button
             size="sm"
-            className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black border-gold-400 px-4 py-2 rounded-full relative overflow-hidden text-sm"
+            className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black border-gold-400 px-4 py-2 rounded-full relative overflow-hidden text-sm ml-2"
             asChild
           >
             <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer">
