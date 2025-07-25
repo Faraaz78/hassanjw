@@ -316,10 +316,18 @@ export default function SavingsSchemePage() {
                       Enroll Now
                     </a>
                   </Button>
-                  <Button asChild variant="outline" size="lg" className="border-gold-500 text-gold-600 dark:text-gold-400 hover:bg-black-50 dark:hover:bg-gold-900/20 px-8 py-3 rounded-full">
-                    <a href="#contact">
-                      <Phone className="mr-2 h-5 w-5" />
-                      Contact Us
+                  <Button
+                    size="lg"
+                    className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black font-semibold px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+                    asChild
+                  >
+                    <a
+                      href="https://wa.me/1234567890?text=Hi!%20I'm%20interested%20in%20enrolling%20in%20your%20savings%20scheme.%20Could%20you%20please%20provide%20more%20details%3F"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Calculator className="mr-2 h-5 w-5" />
+                      Enroll Now
                     </a>
                   </Button>
                 </div>
