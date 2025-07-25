@@ -306,7 +306,7 @@ export default function SavingsSchemePage() {
                     <Calculator className="mr-2 h-5 w-5" />
                     Enroll Now
                   </Button>
-                  <Button asChild variant="outline" size="lg" className="border-gold-500 text-black-600 dark:text-gold-400 hover:bg-gold-50 dark:hover:bg-gold-900/20 px-8 py-3 rounded-full">
+                  <Button asChild variant="outline" size="lg" className="border-gold-500 text-gold-600 dark:text-gold-400 hover:bg-gold-50 dark:hover:bg-gold-900/20 px-8 py-3 rounded-full">
                     <a href="#contact">
                       <Phone className="mr-2 h-5 w-5" />
                       Contact Us
