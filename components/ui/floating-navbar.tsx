@@ -142,7 +142,7 @@ export const FloatingNav = ({
             transition={{ duration: 0.2 }}
             className="md:hidden fixed top-16 sm:top-22 right-4 w-auto min-w-[200px] bg-white/95 dark:bg-black/95 backdrop-blur-md border border-gold-200 dark:border-gold-500 rounded-2xl shadow-lg z-[4999] p-3"
           >
-            <div className="flex flex-col space-y-3">
+            <div className="flex flex-col space-y-1">
               {navItems.map((navItem: any, idx: number) => {
                 const isHashLink = navItem.link.startsWith('#');
 
@@ -152,7 +152,7 @@ export const FloatingNav = ({
                       key={`mobile-link=${idx}`}
                       href={navItem.link}
                       onClick={() => setMobileMenuOpen(false)}
-                      className="text-gray-800 dark:text-gold-300 hover:text-gold-700 dark:hover:text-gold-100 transition-colors duration-300 px-4 py-3 rounded-lg hover:bg-gold-50 dark:hover:bg-gold-900/20 text-base font-medium"
+                      className="text-gray-800 dark:text-gold-300 hover:text-gold-700 dark:hover:text-gold-100 transition-colors duration-300 px-3 py-2 rounded-lg hover:bg-gold-50 dark:hover:bg-gold-900/20 text-sm font-medium whitespace-nowrap"
                     >
                       {navItem.name}
                     </a>
@@ -164,7 +164,7 @@ export const FloatingNav = ({
                     key={`mobile-link=${idx}`}
                     href={navItem.link}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="text-gray-800 dark:text-gold-200 hover:text-gold-700 dark:hover:text-gold-300 transition-colors duration-300 px-4 py-3 rounded-lg hover:bg-gold-50 dark:hover:bg-gold-900/20 text-base font-medium"
+                    className="text-gray-800 dark:text-gold-200 hover:text-gold-700 dark:hover:text-gold-300 transition-colors duration-300 px-3 py-2 rounded-lg hover:bg-gold-50 dark:hover:bg-gold-900/20 text-sm font-medium whitespace-nowrap"
                   >
                     {navItem.name}
                   </Link>
