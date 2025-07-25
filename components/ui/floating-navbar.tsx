@@ -22,6 +22,7 @@ export const FloatingNav = ({
   const [visible, setVisible] = useState(true);
   const [mounted, setMounted] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState("Home");
 
   useEffect(() => {
     setMounted(true);
