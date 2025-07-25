@@ -63,48 +63,73 @@ export const FloatingNav = ({
           className
         )}
       >
-        {navItems.map((navItem: any, idx: number) => {
-          const isHashLink = navItem.link.startsWith('#');
-          
-          if (isHashLink) {
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center space-x-4">
+          {navItems.map((navItem: any, idx: number) => {
+            const isHashLink = navItem.link.startsWith('#');
+
+            if (isHashLink) {
+              return (
+                <a
+                  key={`link=${idx}`}
+                  href={navItem.link}
+                  className={cn(
+                    "relative text-gray-800 dark:text-gold-300 items-center flex space-x-1 hover:text-gold-700 dark:hover:text-gold-100 transition-colors duration-300 px-3 py-2 rounded-md text-sm font-medium"
+                  )}
+                >
+                  <span>{navItem.name}</span>
+                </a>
+              );
+            }
+
             return (
-              <a
+              <Link
                 key={`link=${idx}`}
                 href={navItem.link}
                 className={cn(
-                  "relative dark:text-gold-300 items-center flex space-x-1 text-gray-900 dark:hover:text-gold-100 hover:text-gold-700 transition-colors duration-300 px-2 sm:px-3 py-2 rounded-md text-xs sm:text-sm font-medium font-semibold"
+                  "relative text-gray-800 dark:text-gold-200 items-center flex space-x-1 hover:text-gold-700 dark:hover:text-gold-300 transition-colors duration-300 px-3 py-2 rounded-md text-sm font-medium"
                 )}
               >
-                <span className="block sm:hidden">{navItem.icon}</span>
-                <span className="hidden sm:block">{navItem.name}</span>
-              </a>
+                <span>{navItem.name}</span>
+              </Link>
             );
-          }
-          
-          return (
-            <Link
-              key={`link=${idx}`}
-              href={navItem.link}
-              className={cn(
-                "relative dark:text-gold-200 items-center flex space-x-1 text-black dark:hover:text-gold-300 hover:text-gold-600 transition-colors duration-300 px-2 sm:px-3 py-2 rounded-md text-xs sm:text-sm font-medium"
-              )}
-            >
-              <span className="block sm:hidden">{navItem.icon}</span>
-              <span className="hidden sm:block">{navItem.name}</span>
-            </Link>
-          );
-        })}
-        
-        <Button
-          size="sm"
-          className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black border-gold-400 px-3 sm:px-4 py-2 rounded-full relative overflow-hidden text-xs sm:text-sm"
-          asChild
-        >
-          <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer">
-            <span>Shop Now</span>
-            <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-gold-500 to-transparent h-px" />
-          </a>
-        </Button>
+          })}
+
+          <Button
+            size="sm"
+            className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black border-gold-400 px-4 py-2 rounded-full relative overflow-hidden text-sm"
+            asChild
+          >
+            <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer">
+              <span>Shop Now</span>
+              <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-gold-500 to-transparent h-px" />
+            </a>
+          </Button>
+        </div>
+
+        {/* Mobile Hamburger Menu */}
+        <div className="md:hidden flex items-center space-x-3">
+          <Button
+            size="sm"
+            className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black border-gold-400 px-3 py-2 rounded-full relative overflow-hidden text-xs"
+            asChild
+          >
+            <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer">
+              <span>Shop</span>
+            </a>
+          </Button>
+
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="text-gray-800 dark:text-gold-300 hover:text-gold-600 dark:hover:text-gold-100 transition-colors duration-300 p-2"
+          >
+            {mobileMenuOpen ? (
+              <HiX className="h-5 w-5" />
+            ) : (
+              <HiMenu className="h-5 w-5" />
+            )}
+          </button>
+        </div>
       </motion.div>
     </AnimatePresence>
   );
