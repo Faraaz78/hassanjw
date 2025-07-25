@@ -193,14 +193,23 @@ export const FloatingNav = ({
             <div className="flex flex-col space-y-1">
               {navItems.map((navItem: any, idx: number) => {
                 const isHashLink = navItem.link.startsWith('#');
+                const isActive = activeTab === navItem.name;
 
                 if (isHashLink) {
                   return (
                     <a
                       key={`mobile-link-${idx}`}
                       href={navItem.link}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="text-gray-800 dark:text-gold-300 hover:text-gold-700 dark:hover:text-gold-100 transition-colors duration-300 px-3 py-2 rounded-lg hover:bg-gold-50 dark:hover:bg-gold-900/20 text-sm font-medium whitespace-nowrap"
+                      onClick={() => {
+                        setActiveTab(navItem.name);
+                        setMobileMenuOpen(false);
+                      }}
+                      className={cn(
+                        "transition-colors duration-300 px-3 py-2 rounded-lg text-sm font-medium whitespace-nowrap",
+                        isActive
+                          ? "text-gold-700 dark:text-gold-300 bg-gold-100 dark:bg-gold-900/30"
+                          : "text-gray-800 dark:text-gold-300 hover:text-gold-700 dark:hover:text-gold-100 hover:bg-gold-50 dark:hover:bg-gold-900/20"
+                      )}
                     >
                       {navItem.name}
                     </a>
@@ -211,8 +220,16 @@ export const FloatingNav = ({
                   <Link
                     key={`mobile-link-${idx}`}
                     href={navItem.link}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="text-gray-800 dark:text-gold-200 hover:text-gold-700 dark:hover:text-gold-300 transition-colors duration-300 px-3 py-2 rounded-lg hover:bg-gold-50 dark:hover:bg-gold-900/20 text-sm font-medium whitespace-nowrap"
+                    onClick={() => {
+                      setActiveTab(navItem.name);
+                      setMobileMenuOpen(false);
+                    }}
+                    className={cn(
+                      "transition-colors duration-300 px-3 py-2 rounded-lg text-sm font-medium whitespace-nowrap",
+                      isActive
+                        ? "text-gold-700 dark:text-gold-300 bg-gold-100 dark:bg-gold-900/30"
+                        : "text-gray-800 dark:text-gold-200 hover:text-gold-700 dark:hover:text-gold-300 hover:bg-gold-50 dark:hover:bg-gold-900/20"
+                    )}
                   >
                     {navItem.name}
                   </Link>
