@@ -149,7 +149,7 @@ export const FloatingNav = ({
                 if (isHashLink) {
                   return (
                     <a
-                      key={`mobile-link=${idx}`}
+                      key={`mobile-link-${idx}`}
                       href={navItem.link}
                       onClick={() => setMobileMenuOpen(false)}
                       className="text-gray-800 dark:text-gold-300 hover:text-gold-700 dark:hover:text-gold-100 transition-colors duration-300 px-3 py-2 rounded-lg hover:bg-gold-50 dark:hover:bg-gold-900/20 text-sm font-medium whitespace-nowrap"
@@ -161,7 +161,7 @@ export const FloatingNav = ({
 
                 return (
                   <Link
-                    key={`mobile-link=${idx}`}
+                    key={`mobile-link-${idx}`}
                     href={navItem.link}
                     onClick={() => setMobileMenuOpen(false)}
                     className="text-gray-800 dark:text-gold-200 hover:text-gold-700 dark:hover:text-gold-300 transition-colors duration-300 px-3 py-2 rounded-lg hover:bg-gold-50 dark:hover:bg-gold-900/20 text-sm font-medium whitespace-nowrap"
