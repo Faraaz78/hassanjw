@@ -140,7 +140,7 @@ export const FloatingNav = ({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden fixed top-16 sm:top-22 left-4 right-4 mx-auto max-w-sm bg-white/95 dark:bg-black/95 backdrop-blur-md border border-gold-200 dark:border-gold-500 rounded-2xl shadow-lg z-[4999] p-4"
+            className="md:hidden fixed top-16 sm:top-22 right-4 w-auto min-w-[200px] bg-white/95 dark:bg-black/95 backdrop-blur-md border border-gold-200 dark:border-gold-500 rounded-2xl shadow-lg z-[4999] p-3"
           >
             <div className="flex flex-col space-y-3">
               {navItems.map((navItem: any, idx: number) => {
