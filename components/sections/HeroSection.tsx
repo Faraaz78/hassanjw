@@ -1,34 +1,98 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { TypewriterEffect } from "@/components/ui/typewriter-effect";
 
-// Mock components - replace with your actual imports
-const MagicButton = ({ variant, size, className, children, onClick, ...props }: any) => (
-  <button
-    className={`
-      ${variant === "primary"
-        ? "bg-gradient-to-r from-yellow-400 to-yellow-600 text-black"
-        : "border-2 border-yellow-400 text-yellow-600 bg-transparent"
-      }
-      ${size === "lg" ? "px-6 py-3 text-lg" : "px-4 py-2"}
-      rounded-full font-semibold transition-all duration-300 hover:transform hover:scale-105
-      ${className}
-    `}
-    onClick={onClick}
-    {...props}
-  >
-    {children}
-  </button>
-);
+// HoverBorderGradient Component
+type Direction = "TOP" | "LEFT" | "BOTTOM" | "RIGHT";
 
+function HoverBorderGradient({
+  children,
+  containerClassName,
+  className,
+  as: Tag = "button",
+  duration = 1,
+  clockwise = true,
+  ...props
+}: React.PropsWithChildren<
+  {
+    as?: React.ElementType;
+    containerClassName?: string;
+    className?: string;
+    duration?: number;
+    clockwise?: boolean;
+  } & React.HTMLAttributes<HTMLElement>
+>) {
+  const [hovered, setHovered] = useState<boolean>(false);
+  const [direction, setDirection] = useState<Direction>("TOP");
+
+  const rotateDirection = (currentDirection: Direction): Direction => {
+    const directions: Direction[] = ["TOP", "LEFT", "BOTTOM", "RIGHT"];
+    const currentIndex = directions.indexOf(currentDirection);
+    const nextIndex = clockwise
+      ? (currentIndex - 1 + directions.length) % directions.length
+      : (currentIndex + 1) % directions.length;
+    return directions[nextIndex];
+  };
+
+  const movingMap: Record<Direction, string> = {
+    TOP: "radial-gradient(20.7% 50% at 50% 0%, hsl(0, 0%, 100%) 0%, rgba(255, 255, 255, 0) 100%)",
+    LEFT: "radial-gradient(16.6% 43.1% at 0% 50%, hsl(0, 0%, 100%) 0%, rgba(255, 255, 255, 0) 100%)",
+    BOTTOM: "radial-gradient(20.7% 50% at 50% 100%, hsl(0, 0%, 100%) 0%, rgba(255, 255, 255, 0) 100%)",
+    RIGHT: "radial-gradient(16.2% 41.199999999999996% at 100% 50%, hsl(0, 0%, 100%) 0%, rgba(255, 255, 255, 0) 100%)",
+  };
+
+  const highlight = "radial-gradient(75% 181.15942028985506% at 50% 50%, #3275F8 0%, rgba(255, 255, 255, 0) 100%)";
+
+  useEffect(() => {
+    if (!hovered) {
+      const interval = setInterval(() => {
+        setDirection((prevState) => rotateDirection(prevState));
+      }, duration * 1000);
+      return () => clearInterval(interval);
+    }
+  }, [hovered, duration, clockwise]);
+
+  return (
+    <Tag
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className={`relative flex rounded-full border content-center bg-black/20 hover:bg-black/10 transition duration-500 dark:bg-white/20 items-center flex-col flex-nowrap gap-10 h-min justify-center overflow-visible p-px decoration-clone w-fit ${containerClassName || ''}`}
+      {...props}
+    >
+      <div className={`w-auto text-white z-10 bg-black px-4 py-2 rounded-[inherit] ${className || ''}`}>
+        {children}
+      </div>
+      <motion.div
+        className="flex-none inset-0 overflow-hidden absolute z-0 rounded-[inherit]"
+        style={{
+          filter: "blur(2px)",
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+        }}
+        initial={{ background: movingMap[direction] }}
+        animate={{
+          background: hovered
+            ? [movingMap[direction], highlight]
+            : movingMap[direction],
+        }}
+        transition={{ ease: "linear", duration: duration ?? 1 }}
+      />
+      <div className="bg-black absolute z-1 flex-none inset-[2px] rounded-[100px]" />
+    </Tag>
+  );
+}
+
+// BackgroundBeams Component
 const BackgroundBeams = ({ className }: { className?: string }) => (
   <div className={`${className} pointer-events-none`}>
     <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-pink-600/10 animate-pulse" />
   </div>
 );
 
+// MacBook Component
 interface MacBookProps {
   screenContent?: React.ReactNode;
   width?: string;
@@ -250,7 +314,7 @@ export const HeroSection = () => {
         {particles.map((particle, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 bg-gold-400/20 rounded-full"
+            className="absolute w-1 h-1 bg-yellow-400/20 rounded-full"
             style={{
               left: `${particle.left}%`,
               top: `${particle.top}%`,
@@ -270,13 +334,13 @@ export const HeroSection = () => {
       </div>
 
       {/* Background gradients */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white via-gray-50 to-yellow-50/30 dark:from-black dark:via-luxury-black dark:to-gold-900/20" />
+      <div className="absolute inset-0 bg-gradient-to-br from-white via-gray-50 to-yellow-50/30 dark:from-black dark:via-gray-900 dark:to-yellow-900/20" />
 
       {/* Additional gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gold-50/10 to-transparent dark:from-black/50 dark:via-gold-900/20 dark:to-black/50" />
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-50/10 to-transparent dark:from-black/50 dark:via-yellow-900/20 dark:to-black/50" />
 
       {/* Dark mode gold accent overlay */}
-      <div className="absolute inset-0 hidden dark:block bg-gradient-to-tr from-gold-900/10 via-transparent to-gold-800/5" />
+      <div className="absolute inset-0 hidden dark:block bg-gradient-to-tr from-yellow-900/10 via-transparent to-yellow-800/5" />
 
       <div className="relative z-20 min-h-screen flex items-center">
         <div className="max-w-7xl mx-auto px-4 py-20">
@@ -331,7 +395,7 @@ export const HeroSection = () => {
                     "Crafting Timeless Dream Treasures."
                   ]}
                   className="text-lg md:text-xl text-gray-700 dark:text-gray-200"
-                  cursorClassName="text-gold-500"
+                  cursorClassName="text-yellow-500"
                   typeSpeed={50}
                   deleteSpeed={30}
                   delayBetweenWords={2000}
@@ -350,7 +414,7 @@ export const HeroSection = () => {
                   <span>50+ Years Legacy</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-gold-500 rounded-full animate-pulse"></div>
+                  <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse"></div>
                   <span>Certified Authenticity</span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -359,29 +423,33 @@ export const HeroSection = () => {
                 </div>
               </motion.div>
 
-              {/* CTA Buttons */}
+              {/* CTA Buttons with HoverBorderGradient */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.8 }}
                 className="flex flex-col sm:flex-row gap-4"
               >
-                <MagicButton
-                  variant="primary"
-                  size="lg"
-                  className="px-8 shadow-lg hover:shadow-xl"
+                <HoverBorderGradient
+                  as="button"
+                  containerClassName="px-8 py-3 text-lg font-semibold"
+                  className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-8 py-3 text-lg font-semibold hover:shadow-xl transition-all duration-300"
                   onClick={handleExploreCollections}
+                  duration={1.5}
                 >
                   Explore Collections
-                </MagicButton>
-                <MagicButton
-                  variant="outline"
-                  size="lg"
-                  className="px-8 border-yellow-400 text-yellow-600 dark:border-yellow-400 dark:text-yellow-400 hover:bg-yellow-400 hover:text-black shadow-lg hover:shadow-xl"
+                </HoverBorderGradient>
+
+                <HoverBorderGradient
+                  as="button"
+                  containerClassName="px-8 py-3 text-lg font-semibold border-yellow-400"
+                  className="bg-transparent text-yellow-400 px-8 py-3 text-lg font-semibold hover:shadow-xl transition-all duration-300"
                   onClick={handleBookConsultation}
+                  duration={1.2}
+                  clockwise={false}
                 >
                   Book Consultation
-                </MagicButton>
+                </HoverBorderGradient>
               </motion.div>
             </motion.div>
 
@@ -499,7 +567,7 @@ export const HeroSection = () => {
                   }}
                   className="absolute top-4 left-1/2 -translate-x-1/2 w-14 h-14 z-10"
                 >
-                  <div className="w-full h-full bg-gradient-to-br from-red-500 to-red-700 rounded-full shadow-lg border-2 border-gold-400">
+                  <div className="w-full h-full bg-gradient-to-br from-red-500 to-red-700 rounded-full shadow-lg border-2 border-yellow-400">
                     <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent rounded-full"></div>
                   </div>
                 </motion.div>
@@ -519,7 +587,7 @@ export const HeroSection = () => {
                   }}
                   className="absolute left-2 top-1/2 -translate-y-1/2 w-12 h-12 z-10"
                 >
-                  <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-300 rounded-full shadow-lg border border-gold-300">
+                  <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-300 rounded-full shadow-lg border border-yellow-300">
                     <div className="absolute inset-0 bg-gradient-to-br from-white/60 to-transparent rounded-full"></div>
                   </div>
                 </motion.div>
@@ -535,9 +603,9 @@ export const HeroSection = () => {
                   className="relative"
                 >
                   {/* Phone Frame */}
-                  <div className="relative w-64 h-[500px] bg-gray-900 dark:bg-black rounded-[3rem] p-2 shadow-2xl border-4 border-gray-800 dark:border-gold-900/50">
+                  <div className="relative w-64 h-[500px] bg-gray-900 dark:bg-black rounded-[3rem] p-2 shadow-2xl border-4 border-gray-800 dark:border-yellow-900/50">
                     {/* Screen */}
-                    <div className="w-full h-full bg-black dark:bg-luxury-black rounded-[2.5rem] overflow-hidden relative">
+                    <div className="w-full h-full bg-black dark:bg-gray-900 rounded-[2.5rem] overflow-hidden relative">
                       {/* Status Bar */}
                       <div className="absolute top-0 left-0 right-0 h-8 bg-black z-20 flex items-center justify-between px-6">
                         <div className="flex space-x-1">
@@ -553,23 +621,25 @@ export const HeroSection = () => {
                       <div className="absolute inset-0 top-8">
                         {/* Mobile Light Mode Image */}
                         <div className="absolute inset-0 dark:hidden">
-                          <img
-                            src="/images/moblight.jpeg"
-                            alt="Hassan Jewellers Store - Mobile Light View"
-                            className="w-full h-full object-cover"
-                          />
+                          <div className="w-full h-full bg-gradient-to-br from-yellow-50 to-yellow-100 flex items-center justify-center">
+                            <div className="text-gray-800 text-center p-4">
+                              <div className="text-2xl font-bold mb-2">Hassan Jewellers</div>
+                              <div className="text-sm">Mobile Experience</div>
+                            </div>
+                          </div>
                           <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-black/10" />
                         </div>
 
                         {/* Mobile Dark Mode Image */}
                         <div className="absolute inset-0 hidden dark:block">
-                          <img
-                            src="/images/mobdark.jpeg"
-                            alt="Hassan Jewellers Store - Mobile Dark View"
-                            className="w-full h-full object-cover"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-gold-900/10" />
-                          <div className="absolute inset-0 bg-gradient-to-br from-gold-900/5 via-transparent to-black/30" />
+                          <div className="w-full h-full bg-gradient-to-br from-gray-900 to-black flex items-center justify-center">
+                            <div className="text-yellow-400 text-center p-4">
+                              <div className="text-2xl font-bold mb-2">Hassan Jewellers</div>
+                              <div className="text-sm">Premium Experience</div>
+                            </div>
+                          </div>
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-yellow-900/10" />
+                          <div className="absolute inset-0 bg-gradient-to-br from-yellow-900/5 via-transparent to-black/30" />
                         </div>
                       </div>
                     </div>
@@ -643,23 +713,25 @@ export const HeroSection = () => {
                           <div className="absolute inset-0">
                             {/* Laptop Light Mode Image */}
                             <div className="absolute inset-0 dark:hidden">
-                              <img
-                                src="/images/laplight.png"
-                                alt="Hassan Jewellers Store - Laptop Light View"
-                                className="w-full h-full object-cover rounded-md"
-                              />
+                              <div className="w-full h-full bg-gradient-to-br from-yellow-50 to-yellow-100 flex items-center justify-center rounded-md">
+                                <div className="text-gray-800 text-center p-4">
+                                  <div className="text-xl font-bold mb-2">Hassan Jewellers</div>
+                                  <div className="text-xs">Desktop Experience</div>
+                                </div>
+                              </div>
                               <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-black/10" />
                             </div>
 
                             {/* Laptop Dark Mode Image */}
                             <div className="absolute inset-0 hidden dark:block">
-                              <img
-                                src="/images/lapdark.png"
-                                alt="Hassan Jewellers Store - Laptop Dark View"
-                                className="w-full h-full object-cover rounded-md"
-                              />
-                              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-gold-900/10 rounded-md" />
-                              <div className="absolute inset-0 bg-gradient-to-br from-gold-900/5 via-transparent to-black/30 rounded-md" />
+                              <div className="w-full h-full bg-gradient-to-br from-gray-900 to-black flex items-center justify-center rounded-md">
+                                <div className="text-yellow-400 text-center p-4">
+                                  <div className="text-xl font-bold mb-2">Hassan Jewellers</div>
+                                  <div className="text-xs">Premium Experience</div>
+                                </div>
+                              </div>
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-yellow-900/10 rounded-md" />
+                              <div className="absolute inset-0 bg-gradient-to-br from-yellow-900/5 via-transparent to-black/30 rounded-md" />
                             </div>
                           </div>
 
@@ -704,7 +776,7 @@ export const HeroSection = () => {
                   scale: [1, 1.1, 0.9, 1]
                 }}
                 transition={{ duration: 4, repeat: Infinity, delay: 0.5 }}
-                className="absolute top-1/2 right-1/3 w-3 h-3 bg-gradient-to-br from-gold-300 to-gold-500 rounded-full shadow-sm"
+                className="absolute top-1/2 right-1/3 w-3 h-3 bg-gradient-to-br from-yellow-300 to-yellow-500 rounded-full shadow-sm"
               />
               <motion.div
                 animate={{
