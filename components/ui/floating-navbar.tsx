@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { StandardGoldButton } from "@/components/ui/gold-buttons";
 import { HiMenu, HiX } from "react-icons/hi";
 
 export const FloatingNav = ({
@@ -142,29 +142,27 @@ export const FloatingNav = ({
             );
           })}
 
-          <Button
+          <StandardGoldButton
+            variant="primary"
             size="sm"
-            className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black border-gold-400 px-4 py-2 rounded-full relative overflow-hidden text-sm ml-2"
-            asChild
+            className="ml-2 relative overflow-hidden"
+            onClick={() => window.open('https://wa.me/919876543210', '_blank')}
           >
-            <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer">
-              <span>Shop Now</span>
-              <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-gold-500 to-transparent h-px" />
-            </a>
-          </Button>
+            <span>Shop Now</span>
+            <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-gold-500 to-transparent h-px" />
+          </StandardGoldButton>
         </div>
 
         {/* Mobile Hamburger Menu */}
         <div className="md:hidden flex items-center space-x-3">
-          <Button
+          <StandardGoldButton
+            variant="primary"
             size="sm"
-            className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black border-gold-400 px-3 py-2 rounded-full relative overflow-hidden text-xs"
-            asChild
+            className="text-xs relative overflow-hidden"
+            onClick={() => window.open('https://wa.me/919876543210', '_blank')}
           >
-            <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer">
-              <span>Shop</span>
-            </a>
-          </Button>
+            <span>Shop</span>
+          </StandardGoldButton>
 
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}

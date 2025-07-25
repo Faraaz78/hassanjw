@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { GoldHoverBorderGradient } from "@/components/ui/gold-buttons";
 import { Card } from "@/components/ui/card";
 import { Sparkles } from "@/components/ui/sparkles";
 import { ColorfulText } from "@/components/ui/colorful-text";
@@ -170,16 +170,24 @@ export const SavingsSchemeSection = () => {
         >
           <div className="space-y-6">
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button asChild size="lg" className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black font-semibold px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
-                <Link href="/savings-scheme">
-                  Learn More & Enroll
-                </Link>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="border-gold-500 text-gold-600 dark:text-gold-400 hover:bg-gold-50 dark:hover:bg-gold-900/20 px-8 py-3 rounded-full">
-                <a href="#contact">
-                  Contact Us
-                </a>
-              </Button>
+              <GoldHoverBorderGradient
+                variant="primary"
+                size="lg"
+                className="px-8"
+                as={Link}
+                href="/savings-scheme"
+              >
+                Learn More & Enroll
+              </GoldHoverBorderGradient>
+              <GoldHoverBorderGradient
+                variant="outline"
+                size="lg"
+                className="px-8"
+                as="a"
+                href="#contact"
+              >
+                Contact Us
+              </GoldHoverBorderGradient>
             </div>
             
             <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-600 dark:text-gray-400">
