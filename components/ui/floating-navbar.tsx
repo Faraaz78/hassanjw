@@ -133,9 +133,10 @@ export const FloatingNav = ({
       </motion.div>
 
       {/* Mobile Menu Dropdown */}
-      <AnimatePresence>
+      <AnimatePresence key="mobile-menu">
         {mobileMenuOpen && (
           <motion.div
+            key="mobile-dropdown"
             initial={{ opacity: 0, y: -20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
