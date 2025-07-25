@@ -368,7 +368,7 @@ export const HeroSection = () => {
               >
                 <MagicButton
                   variant="primary"
-                  size="lg"
+                  size="sm"
                   className="px-8 shadow-lg hover:shadow-xl"
                   onClick={handleExploreCollections}
                 >
