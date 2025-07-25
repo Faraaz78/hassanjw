@@ -108,11 +108,13 @@ export default function SavingsSchemePage() {
                 transition={{ duration: 0.8 }}
                 className="text-center mb-8"
               >
-                <Link href="/" className="inline-flex items-center text-gold-600 dark:text-gold-400 hover:text-gold-700 mb-6 transition-colors">
-                  <ArrowLeft className="mr-2 h-4 w-4" />
+                <Link
+                  href="/"
+                  className="inline-flex items-center text-gold-600 dark:text-gold-400 hover:text-gold-700 dark:hover:text-gold-300 mb-6 px-4 py-2 rounded-full bg-gold-50/50 dark:bg-gold-900/20 hover:bg-gold-100 dark:hover:bg-gold-900/40 border border-gold-200 dark:border-gold-800 hover:border-gold-300 dark:hover:border-gold-700 transition-all duration-300 ease-in-out hover:shadow-md hover:scale-105 group"
+                >
+                  <ArrowLeft className="mr-2 h-4 w-4 transition-transform duration-300 group-hover:-translate-x-1" />
                   Back to Home
                 </Link>
-                
                 <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
                   <span className="bg-gradient-to-r from-gold-600 via-gold-500 to-gold-700 bg-clip-text text-transparent">
                     Smart Buy Savings Scheme
