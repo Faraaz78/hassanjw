@@ -42,7 +42,6 @@ export const Footer = () => {
             <div className="flex space-x-4">
               {[
                 { icon: <FaFacebookF />, href: "#", label: "Facebook" },
-               
                 { icon: <FaInstagram />, href: "https://www.instagram.com/hassanjewellers", label: "Instagram" },
                 { icon: <FaLinkedinIn />, href: "#", label: "LinkedIn" }
               ].map((social, index) => (
