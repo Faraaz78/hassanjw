@@ -45,8 +45,9 @@ export const FloatingNav = ({
   }
 
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence mode="wait" key="main-navbar">
       <motion.div
+        key="navbar"
         initial={{
           opacity: 1,
           y: -100,
