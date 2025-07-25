@@ -376,7 +376,7 @@ export const HeroSection = () => {
                 </MagicButton>
                 <MagicButton
                   variant="outline"
-                  size="lg"
+                  size="sm"
                   className="px-8 border-yellow-400 text-yellow-600 dark:border-yellow-400 dark:text-yellow-400 hover:bg-yellow-400 hover:text-black shadow-lg hover:shadow-xl"
                   onClick={handleBookConsultation}
                 >
