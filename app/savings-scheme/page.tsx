@@ -318,7 +318,7 @@ export default function SavingsSchemePage() {
                   <div className="text-center">
                     <Phone className="w-8 h-8 text-gold-600 dark:text-gold-400 mx-auto mb-3" />
                     <h3 className="font-bold text-gray-800 dark:text-gray-200 mb-2">Call Us</h3>
-                    <p className="text-gray-600 dark:text-gray-400">+91 7200147047</p>
+                    <p className="text-gray-600 dark:text-gray-400">+91 9787812341</p>
                   </div>
                   <div className="text-center">
                     <Mail className="w-8 h-8 text-gold-600 dark:text-gold-400 mx-auto mb-3" />
