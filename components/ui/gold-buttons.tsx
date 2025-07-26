@@ -107,6 +107,34 @@ export function GoldHoverBorderGradient({
     }
   }, [hovered, duration, clockwise]);
 
+  if (!mounted) {
+    return (
+      <Tag
+        className={cn(
+          "relative flex rounded-full border content-center transition-all duration-500",
+          "bg-amber-50/20 hover:bg-amber-50/40 dark:bg-amber-900/20 dark:hover:bg-amber-900/40",
+          "border-amber-200 dark:border-amber-700",
+          "items-center flex-col flex-nowrap gap-10 h-min justify-center overflow-visible p-px decoration-clone w-fit",
+          "shadow-lg hover:shadow-xl shadow-amber-200/50 dark:shadow-amber-900/50",
+          containerClassName
+        )}
+        suppressHydrationWarning
+      >
+        <div
+          className={cn(
+            "w-auto z-10 rounded-[inherit] font-medium transition-all duration-300",
+            sizeClasses[size],
+            variantStyles[variant],
+            "shadow-inner",
+            className
+          )}
+        >
+          {children}
+        </div>
+      </Tag>
+    );
+  }
+
   return (
     <Tag
       onMouseEnter={() => setHovered(true)}
@@ -119,6 +147,7 @@ export function GoldHoverBorderGradient({
         "shadow-lg hover:shadow-xl shadow-amber-200/50 dark:shadow-amber-900/50",
         containerClassName
       )}
+      suppressHydrationWarning
       {...props}
     >
       <div
