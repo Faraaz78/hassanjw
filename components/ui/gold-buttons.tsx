@@ -293,6 +293,7 @@ export function GoldIconButton({
         variantStyles[variant],
         className
       )}
+      suppressHydrationWarning
       {...props}
     >
       {children}
