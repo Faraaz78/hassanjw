@@ -242,6 +242,7 @@ export function StandardGoldButton({
         variantStyles[variant],
         className
       )}
+      suppressHydrationWarning
       {...props}
     >
       {children}
