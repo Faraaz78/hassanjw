@@ -263,6 +263,11 @@ export function GoldIconButton({
   size = 'md',
   ...props
 }: GoldIconButtonProps) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   const sizeClasses = {
     sm: "p-1.5",
     md: "p-2",
