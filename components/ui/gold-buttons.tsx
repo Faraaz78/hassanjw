@@ -29,7 +29,7 @@ const goldColors = {
     hover: "#4A3728", // Dark brown
     text: "#F5F5DC", // Beige
     bg: "#1A1611", // Very dark brown
-  }
+  },
 };
 
 interface HoverBorderGradientProps extends React.HTMLAttributes<HTMLElement> {
@@ -39,8 +39,8 @@ interface HoverBorderGradientProps extends React.HTMLAttributes<HTMLElement> {
   as?: React.ElementType;
   duration?: number;
   clockwise?: boolean;
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
-  size?: 'sm' | 'md' | 'lg' | 'xl';
+  variant?: "primary" | "secondary" | "outline" | "ghost";
+  size?: "sm" | "md" | "lg" | "xl";
 }
 
 export function GoldHoverBorderGradient({
@@ -50,8 +50,8 @@ export function GoldHoverBorderGradient({
   as: Tag = "button",
   duration = 1,
   clockwise = true,
-  variant = 'primary',
-  size = 'md',
+  variant = "primary",
+  size = "md",
   ...props
 }: HoverBorderGradientProps) {
   const [hovered, setHovered] = useState<boolean>(false);
@@ -75,27 +75,34 @@ export function GoldHoverBorderGradient({
   const movingMap: Record<Direction, string> = {
     TOP: "radial-gradient(20.7% 50% at 50% 0%, #FFD700 0%, rgba(255, 215, 0, 0) 100%)",
     LEFT: "radial-gradient(16.6% 43.1% at 0% 50%, #FFD700 0%, rgba(255, 215, 0, 0) 100%)",
-    BOTTOM: "radial-gradient(20.7% 50% at 50% 100%, #FFD700 0%, rgba(255, 215, 0, 0) 100%)",
-    RIGHT: "radial-gradient(16.2% 41.2% at 100% 50%, #FFD700 0%, rgba(255, 215, 0, 0) 100%)",
+    BOTTOM:
+      "radial-gradient(20.7% 50% at 50% 100%, #FFD700 0%, rgba(255, 215, 0, 0) 100%)",
+    RIGHT:
+      "radial-gradient(16.2% 41.2% at 100% 50%, #FFD700 0%, rgba(255, 215, 0, 0) 100%)",
   };
 
   // Gold highlight for hover state
-  const highlight = "radial-gradient(75% 181.15% at 50% 50%, #D4AF37 0%, rgba(212, 175, 55, 0.3) 100%)";
+  const highlight =
+    "radial-gradient(75% 181.15% at 50% 50%, #D4AF37 0%, rgba(212, 175, 55, 0.3) 100%)";
 
   // Size variants
   const sizeClasses = {
     sm: "px-3 py-1.5 text-sm",
     md: "px-4 py-2 text-base",
     lg: "px-6 py-3 text-lg",
-    xl: "px-8 py-4 text-xl"
+    xl: "px-8 py-4 text-xl",
   };
 
   // Variant styles
   const variantStyles = {
-    primary: "bg-gradient-to-r from-amber-600 to-yellow-500 text-white hover:from-amber-500 hover:to-yellow-400 dark:from-yellow-500 dark:to-amber-400 dark:text-amber-900",
-    secondary: "bg-gradient-to-r from-yellow-400 to-amber-300 text-amber-900 hover:from-yellow-300 hover:to-amber-200 dark:from-amber-300 dark:to-yellow-200 dark:text-amber-800",
-    outline: "bg-transparent border-2 border-amber-500 text-amber-600 hover:bg-amber-50 dark:border-yellow-400 dark:text-yellow-400 dark:hover:bg-amber-900/20",
-    ghost: "bg-transparent text-amber-600 hover:bg-amber-50 dark:text-yellow-400 dark:hover:bg-amber-900/20"
+    primary:
+      "bg-gradient-to-r from-amber-600 to-yellow-500 text-white hover:from-amber-500 hover:to-yellow-400 dark:from-yellow-500 dark:to-amber-400 dark:text-amber-900",
+    secondary:
+      "bg-gradient-to-r from-yellow-400 to-amber-300 text-amber-900 hover:from-yellow-300 hover:to-amber-200 dark:from-amber-300 dark:to-yellow-200 dark:text-amber-800",
+    outline:
+      "bg-transparent border-2 border-amber-500 text-amber-600 hover:bg-amber-50 dark:border-yellow-400 dark:text-yellow-400 dark:hover:bg-amber-900/20",
+    ghost:
+      "bg-transparent text-amber-600 hover:bg-amber-50 dark:text-yellow-400 dark:hover:bg-amber-900/20",
   };
 
   useEffect(() => {
@@ -116,7 +123,7 @@ export function GoldHoverBorderGradient({
           "border-amber-200 dark:border-amber-700",
           "items-center flex-col flex-nowrap gap-10 h-min justify-center overflow-visible p-px decoration-clone w-fit",
           "shadow-lg hover:shadow-xl shadow-amber-200/50 dark:shadow-amber-900/50",
-          containerClassName
+          containerClassName,
         )}
         suppressHydrationWarning
       >
@@ -126,7 +133,7 @@ export function GoldHoverBorderGradient({
             sizeClasses[size],
             variantStyles[variant],
             "shadow-inner",
-            className
+            className,
           )}
         >
           {children}
@@ -145,7 +152,7 @@ export function GoldHoverBorderGradient({
         "border-amber-200 dark:border-amber-700",
         "items-center flex-col flex-nowrap gap-10 h-min justify-center overflow-visible p-px decoration-clone w-fit",
         "shadow-lg hover:shadow-xl shadow-amber-200/50 dark:shadow-amber-900/50",
-        containerClassName
+        containerClassName,
       )}
       suppressHydrationWarning
       {...props}
@@ -156,7 +163,7 @@ export function GoldHoverBorderGradient({
           sizeClasses[size],
           variantStyles[variant],
           "shadow-inner",
-          className
+          className,
         )}
       >
         {children}
@@ -172,7 +179,9 @@ export function GoldHoverBorderGradient({
         }}
         initial={{ background: movingMap[direction] }}
         animate={{
-          background: hovered ? [movingMap[direction], highlight] : movingMap[direction],
+          background: hovered
+            ? [movingMap[direction], highlight]
+            : movingMap[direction],
         }}
         transition={{ ease: "linear", duration: duration ?? 1 }}
       />
@@ -183,33 +192,42 @@ export function GoldHoverBorderGradient({
 }
 
 // Preset button components for common use cases
-export function GoldPrimaryButton(props: Omit<HoverBorderGradientProps, 'variant'>) {
+export function GoldPrimaryButton(
+  props: Omit<HoverBorderGradientProps, "variant">,
+) {
   return <GoldHoverBorderGradient {...props} variant="primary" />;
 }
 
-export function GoldSecondaryButton(props: Omit<HoverBorderGradientProps, 'variant'>) {
+export function GoldSecondaryButton(
+  props: Omit<HoverBorderGradientProps, "variant">,
+) {
   return <GoldHoverBorderGradient {...props} variant="secondary" />;
 }
 
-export function GoldOutlineButton(props: Omit<HoverBorderGradientProps, 'variant'>) {
+export function GoldOutlineButton(
+  props: Omit<HoverBorderGradientProps, "variant">,
+) {
   return <GoldHoverBorderGradient {...props} variant="outline" />;
 }
 
-export function GoldGhostButton(props: Omit<HoverBorderGradientProps, 'variant'>) {
+export function GoldGhostButton(
+  props: Omit<HoverBorderGradientProps, "variant">,
+) {
   return <GoldHoverBorderGradient {...props} variant="ghost" />;
 }
 
 // Standard button without border animation (for performance-critical areas)
-interface StandardGoldButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
-  size?: 'sm' | 'md' | 'lg' | 'xl';
+interface StandardGoldButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: "primary" | "secondary" | "outline" | "ghost";
+  size?: "sm" | "md" | "lg" | "xl";
 }
 
 export function StandardGoldButton({
   children,
   className,
-  variant = 'primary',
-  size = 'md',
+  variant = "primary",
+  size = "md",
   ...props
 }: StandardGoldButtonProps) {
   const [mounted, setMounted] = useState(false);
@@ -221,14 +239,18 @@ export function StandardGoldButton({
     sm: "px-3 py-1.5 text-sm",
     md: "px-4 py-2 text-base",
     lg: "px-6 py-3 text-lg",
-    xl: "px-8 py-4 text-xl"
+    xl: "px-8 py-4 text-xl",
   };
 
   const variantStyles = {
-    primary: "bg-gradient-to-r from-amber-600 to-yellow-500 text-white hover:from-amber-500 hover:to-yellow-400 dark:from-yellow-500 dark:to-amber-400 dark:text-amber-900 shadow-lg shadow-amber-200/50 dark:shadow-amber-900/50",
-    secondary: "bg-gradient-to-r from-yellow-400 to-amber-300 text-amber-900 hover:from-yellow-300 hover:to-amber-200 dark:from-amber-300 dark:to-yellow-200 dark:text-amber-800 shadow-md shadow-yellow-200/50 dark:shadow-amber-800/50",
-    outline: "bg-transparent border-2 border-amber-500 text-amber-600 hover:bg-amber-50 hover:shadow-md dark:border-yellow-400 dark:text-yellow-400 dark:hover:bg-amber-900/20",
-    ghost: "bg-transparent text-amber-600 hover:bg-amber-50 hover:text-amber-700 dark:text-yellow-400 dark:hover:bg-amber-900/20 dark:hover:text-yellow-300"
+    primary:
+      "bg-gradient-to-r from-amber-600 to-yellow-500 text-white hover:from-amber-500 hover:to-yellow-400 dark:from-yellow-500 dark:to-amber-400 dark:text-amber-900 shadow-lg shadow-amber-200/50 dark:shadow-amber-900/50",
+    secondary:
+      "bg-gradient-to-r from-yellow-400 to-amber-300 text-amber-900 hover:from-yellow-300 hover:to-amber-200 dark:from-amber-300 dark:to-yellow-200 dark:text-amber-800 shadow-md shadow-yellow-200/50 dark:shadow-amber-800/50",
+    outline:
+      "bg-transparent border-2 border-amber-500 text-amber-600 hover:bg-amber-50 hover:shadow-md dark:border-yellow-400 dark:text-yellow-400 dark:hover:bg-amber-900/20",
+    ghost:
+      "bg-transparent text-amber-600 hover:bg-amber-50 hover:text-amber-700 dark:text-yellow-400 dark:hover:bg-amber-900/20 dark:hover:text-yellow-300",
   };
 
   return (
@@ -240,7 +262,7 @@ export function StandardGoldButton({
         "disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100",
         sizeClasses[size],
         variantStyles[variant],
-        className
+        className,
       )}
       suppressHydrationWarning
       {...props}
@@ -251,16 +273,17 @@ export function StandardGoldButton({
 }
 
 // Icon button variant
-interface GoldIconButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
-  size?: 'sm' | 'md' | 'lg';
+interface GoldIconButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: "primary" | "secondary" | "outline" | "ghost";
+  size?: "sm" | "md" | "lg";
 }
 
 export function GoldIconButton({
   children,
   className,
-  variant = 'primary',
-  size = 'md',
+  variant = "primary",
+  size = "md",
   ...props
 }: GoldIconButtonProps) {
   const [mounted, setMounted] = useState(false);
@@ -275,10 +298,14 @@ export function GoldIconButton({
   };
 
   const variantStyles = {
-    primary: "bg-gradient-to-r from-amber-600 to-yellow-500 text-white hover:from-amber-500 hover:to-yellow-400 dark:from-yellow-500 dark:to-amber-400 dark:text-amber-900",
-    secondary: "bg-gradient-to-r from-yellow-400 to-amber-300 text-amber-900 hover:from-yellow-300 hover:to-amber-200 dark:from-amber-300 dark:to-yellow-200 dark:text-amber-800",
-    outline: "bg-transparent border-2 border-amber-500 text-amber-600 hover:bg-amber-50 dark:border-yellow-400 dark:text-yellow-400 dark:hover:bg-amber-900/20",
-    ghost: "bg-transparent text-amber-600 hover:bg-amber-50 dark:text-yellow-400 dark:hover:bg-amber-900/20"
+    primary:
+      "bg-gradient-to-r from-amber-600 to-yellow-500 text-white hover:from-amber-500 hover:to-yellow-400 dark:from-yellow-500 dark:to-amber-400 dark:text-amber-900",
+    secondary:
+      "bg-gradient-to-r from-yellow-400 to-amber-300 text-amber-900 hover:from-yellow-300 hover:to-amber-200 dark:from-amber-300 dark:to-yellow-200 dark:text-amber-800",
+    outline:
+      "bg-transparent border-2 border-amber-500 text-amber-600 hover:bg-amber-50 dark:border-yellow-400 dark:text-yellow-400 dark:hover:bg-amber-900/20",
+    ghost:
+      "bg-transparent text-amber-600 hover:bg-amber-50 dark:text-yellow-400 dark:hover:bg-amber-900/20",
   };
 
   return (
@@ -291,7 +318,7 @@ export function GoldIconButton({
         "shadow-lg hover:shadow-xl shadow-amber-200/50 dark:shadow-amber-900/50",
         sizeClasses[size],
         variantStyles[variant],
-        className
+        className,
       )}
       suppressHydrationWarning
       {...props}
