@@ -558,6 +558,7 @@ export default function Index() {
                       value={formData.message}
                       onChange={(e) => setFormData({...formData, message: e.target.value})}
                       className="w-full px-4 py-3 border border-gold-300 dark:border-gold-600 rounded-lg focus:ring-2 focus:ring-gold-500 focus:border-transparent dark:bg-gray-800 dark:text-white transition-all duration-300"
+                      suppressHydrationWarning
                       required
                     />
                   </div>
