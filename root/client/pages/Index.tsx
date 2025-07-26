@@ -528,6 +528,7 @@ export default function Index() {
                       value={formData.name}
                       onChange={(e) => setFormData({...formData, name: e.target.value})}
                       className="w-full px-4 py-3 border border-gold-300 dark:border-gold-600 rounded-lg focus:ring-2 focus:ring-gold-500 focus:border-transparent dark:bg-gray-800 dark:text-white transition-all duration-300"
+                      suppressHydrationWarning
                       required
                     />
                   </div>
@@ -542,6 +543,7 @@ export default function Index() {
                       value={formData.email}
                       onChange={(e) => setFormData({...formData, email: e.target.value})}
                       className="w-full px-4 py-3 border border-gold-300 dark:border-gold-600 rounded-lg focus:ring-2 focus:ring-gold-500 focus:border-transparent dark:bg-gray-800 dark:text-white transition-all duration-300"
+                      suppressHydrationWarning
                       required
                     />
                   </div>
