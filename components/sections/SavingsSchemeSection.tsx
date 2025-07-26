@@ -170,15 +170,16 @@ export const SavingsSchemeSection = () => {
         >
           <div className="space-y-6">
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <GoldHoverBorderGradient
-                variant="primary"
-                size="lg"
-                className="px-8"
-                as={Link}
-                href="/savings-scheme"
-              >
-                Learn More & Enroll
-              </GoldHoverBorderGradient>
+              <Link href="/savings-scheme">
+                <GoldHoverBorderGradient
+                  variant="primary"
+                  size="lg"
+                  className="px-8"
+                  as="span"
+                >
+                  Learn More & Enroll
+                </GoldHoverBorderGradient>
+              </Link>
               <GoldHoverBorderGradient
                 variant="outline"
                 size="lg"
