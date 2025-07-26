@@ -113,12 +113,13 @@ export const ContactSection = () => {
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Name
                   </label>
-                                    <input
+                  <input
                     type="text"
                     id="name"
                     value={formData.name}
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
                     className="w-full px-4 py-3 border-2 border-gold-300/50 dark:border-gold-600/50 rounded-lg focus:ring-2 focus:ring-gold-500 focus:border-gold-500 dark:bg-black/80 dark:text-gold-200 bg-white/80 backdrop-blur-sm transition-all duration-300 hover:border-gold-400/70"
+                    suppressHydrationWarning
                     required
                   />
                 </div>
@@ -127,12 +128,13 @@ export const ContactSection = () => {
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Email
                   </label>
-                                    <input
+                  <input
                     type="email"
                     id="email"
                     value={formData.email}
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
                     className="w-full px-4 py-3 border-2 border-gold-300/50 dark:border-gold-600/50 rounded-lg focus:ring-2 focus:ring-gold-500 focus:border-gold-500 dark:bg-black/80 dark:text-gold-200 bg-white/80 backdrop-blur-sm transition-all duration-300 hover:border-gold-400/70"
+                    suppressHydrationWarning
                     required
                   />
                 </div>
@@ -141,12 +143,13 @@ export const ContactSection = () => {
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Message
                   </label>
-                                    <textarea
+                  <textarea
                     id="message"
                     rows={5}
                     value={formData.message}
                     onChange={(e) => setFormData({...formData, message: e.target.value})}
                     className="w-full px-4 py-3 border-2 border-gold-300/50 dark:border-gold-600/50 rounded-lg focus:ring-2 focus:ring-gold-500 focus:border-gold-500 dark:bg-black/80 dark:text-gold-200 bg-white/80 backdrop-blur-sm transition-all duration-300 hover:border-gold-400/70 resize-none"
+                    suppressHydrationWarning
                     required
                   />
                 </div>
